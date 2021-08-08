@@ -4,6 +4,7 @@
 #include <GLFW/glfw3.h>
 #include <stb/stb_image.h>
 
+#include "Texture.h"
 #include "shaderClass.h"
 #include "VAO.h"
 #include "VBO.h"
@@ -87,31 +88,8 @@ int main()
 	GLuint uniID = glGetUniformLocation(shaderProgram.ID, "scale");
 
 	// Texture
-	int imgWidth, imgHeight, numColCha;
-	unsigned char* bytes = stbi_load("D_Brick_01.jpg", &imgWidth, &imgHeight, &numColCha, 0);
-
-	GLuint texture;
-	glGenTextures(1, &texture);
-
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, texture);
-
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, imgWidth, imgHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, bytes);
-	glGenerateMipmap(GL_TEXTURE_2D);
-
-	stbi_image_free(bytes);
-	glBindTexture(GL_TEXTURE_2D, 0);
-
-	GLuint tex0Uni = glGetUniformLocation(shaderProgram.ID, "tex0");
-	shaderProgram.Activate();
-	glUniform1i(tex0Uni, 0);
-
+	Texture wallBrick("D_Brick_01.jpg", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGB, GL_UNSIGNED_BYTE);
+	wallBrick.texUnit(shaderProgram, "tex0", 0);
 
 	// Main while loop
 	while (!glfwWindowShouldClose(window))
@@ -126,7 +104,7 @@ int main()
 		// Use the created program
 		shaderProgram.Activate();
 		glUniform1f(uniID, 0.4f);
-		glBindTexture(GL_TEXTURE_2D, texture);
+		wallBrick.Bind();
 
 		VAO1.Bind();
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -143,7 +121,7 @@ int main()
 	VAO1.Delete();
 	VBO1.Delete();
 	EBO1.Delete();
-	glDeleteTextures(1, &texture);
+	wallBrick.Delete();
 	shaderProgram.Delete();
 
 	// Destroy window and its process

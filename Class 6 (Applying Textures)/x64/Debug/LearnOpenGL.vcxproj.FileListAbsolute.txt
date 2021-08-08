@@ -1,0 +1,2 @@
+C:\Users\MICRO\Documents\Projects\Programming\C++\LearnOpenGL\x64\Debug\LearnOpenGL.exe
+C:\Users\Kellvyn\Documents\Projects\Programming\C++\LearnOpenGL\x64\Debug\LearnOpenGL.exe
