@@ -9,6 +9,6 @@
   <h1>CREDITS</h1>
   <h2>Excellents ways to learn OpenGL:</h2>
   Reading a Great Book: <a href="https://bit.ly/2TXi2Jp">Learn OpenGL</a><br>
-  Watching Great Vídeos: <a href="https://bit.ly/3s3tlMM">Victor Gordan</a>, <a href="https://bit.ly/3nT6wtj">The Cherno</a>
+  Watching Great Videos: <a href="https://bit.ly/3s3tlMM">Victor Gordan</a>, <a href="https://bit.ly/3nT6wtj">The Cherno</a>
 </body>
 </html>
