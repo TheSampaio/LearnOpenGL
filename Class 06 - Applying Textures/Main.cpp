@@ -9,7 +9,7 @@
 #include "Texture.h"
 #include "ShaderClass.h"
 
-// Defing macros
+// Defining macros
 #define WINDOW_NAME     "My OpenGL Window"
 #define WINDOW_WIDTH    800
 #define WINDOW_HEIGHT   (windowWidth / 2) + (windowWidth / 2) / 2
