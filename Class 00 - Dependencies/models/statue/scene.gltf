@@ -1,0 +1,143 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v1.6.16",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                0
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "Mesh_7",
+            "rotation" : [
+                0.7051772475242615,
+                0.001607149955816567,
+                0.7090248465538025,
+                0.002507030963897705
+            ],
+            "scale" : [
+                0.07672934234142303,
+                0.07672932744026184,
+                0.07672934234142303
+            ]
+        }
+    ],
+    "materials" : [
+        {
+            "doubleSided" : true,
+            "name" : "Johannes_Benk_O_Material_u1_v1",
+            "pbrMetallicRoughness" : {
+                "baseColorTexture" : {
+                    "index" : 0
+                },
+                "metallicFactor" : 0
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Mesh_7",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1,
+                        "TEXCOORD_0" : 2
+                    },
+                    "indices" : 3,
+                    "material" : 0
+                }
+            ]
+        }
+    ],
+    "textures" : [
+        {
+            "sampler" : 0,
+            "source" : 0
+        }
+    ],
+    "images" : [
+        {
+            "mimeType" : "image/png",
+            "name" : "Johannes_Benk_O_Material_u1_v1_baseColor",
+            "uri" : "textures/Johannes_Benk_O_Material_u1_v1_baseColor.png"
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 508192,
+            "max" : [
+                6.981908321380615,
+                -0.007397651672363281,
+                6.65371036529541
+            ],
+            "min" : [
+                -8.120192527770996,
+                -22.100351333618164,
+                -5.756394863128662
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 508192,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 508192,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5125,
+            "count" : 1843104,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 6098304,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 6098304,
+            "byteOffset" : 6098304
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 4065536,
+            "byteOffset" : 12196608
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 7372416,
+            "byteOffset" : 16262144
+        }
+    ],
+    "samplers" : [
+        {
+            "magFilter" : 9729,
+            "minFilter" : 9987
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 23634560,
+            "uri" : "scene.bin"
+        }
+    ]
+}

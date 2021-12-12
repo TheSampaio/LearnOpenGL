@@ -70,7 +70,7 @@ int main(void)
 
     Camera camera(WINDOW_WIDTH, WINDOW_HEIGHT, CAMERA_SENSITIVITY, CAMERA_SPEED, glm::vec3(0.0f, 0.4f, 1.5f)); // Create a camera
 
-    Model model("Models/map/scene.gltf"); // Create a model
+    Model model("models/map/scene.gltf"); // Create a model
 
     while (!glfwWindowShouldClose(window)) // Windows's loop
     {
