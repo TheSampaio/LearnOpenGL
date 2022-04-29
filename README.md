@@ -29,11 +29,22 @@
     <img src=".readme\Class_10.png" width=380 height=280><br>
   <h2>11) TYPES OF LIGHT</h2>
     <b>• Point Light<b><br>
-    <img src=".readme\Class_11 (1).png" width=380 height=280><br><br>
+      <img src=".readme\Class_11 (1).png" width=380 height=280><br><br>
     <b>• Directional Light<b><br>
-    <img src=".readme\Class_11 (2).png" width=380 height=280><br><br>
+      <img src=".readme\Class_11 (2).png" width=380 height=280><br><br>
     <b>• Spot Light<b><br>
-    <img src=".readme\Class_11 (3).png" width=380 height=280><br>
+      <img src=".readme\Class_11 (3).png" width=380 height=280><br>
+  <h2>12) CREATING A MESH CLASS</h2>
+    <img src=".readme\Class_12.png" width=380 height=280>
+  <h2>13) IMPORTING MODELS</h2>
+    <img src=".readme\Class_13.png" width=380 height=280>
+  <h2>14) FACE CULLING & FPS COUNTER</h2>
+    <b>• Before Active Face Culling<b><br>
+      <img src=".readme\Class_14 (1).png" width=380 height=280><br><br>
+    <b>• After Active Face Culling<b><br>
+      <img src=".readme\Class_14 (2).png" width=380 height=280><br>
+  <h2>15) ADDING DEPTH BUFFER</h2>
+    <img src=".readme\Class_15.png" width=380 height=280>
   <h2>CREDITS</h2>
   Excellents ways to learn OpenGL:<br>
   • Reading a Great Book: <a href="https://bit.ly/2TXi2Jp">Learn OpenGL</a><br>
