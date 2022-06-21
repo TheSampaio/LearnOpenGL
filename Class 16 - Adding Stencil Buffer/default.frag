@@ -50,7 +50,7 @@ vec4 DirectionalLight() // Create a directional light
 
 	// Difuse light
 	vec3 normal = normalize(normalCoord);
-	vec3 lightDirection = normalize(vec3(-1.0, 0.5, -1.0));
+	vec3 lightDirection = normalize(vec3(-0.5, 0.5, 1.0));
 	float diffuse = max(dot(normal, lightDirection), 0.0);
 
 	// Specular light
@@ -93,8 +93,8 @@ vec4 SpotLight() // Create a spot light
 	return (texture(diffuse0, texCoord) * (diffuse * intensity + ambientLight) + texture(specular0, texCoord).r * specular * intensity) * lightColor;
 }
 
-float near =  0.008;
-float far = 100.000;
+float near =  0.0008;
+float far =  20.0000;
 uniform vec3 fogColor;
 
 float linearizeDepth(float depth)

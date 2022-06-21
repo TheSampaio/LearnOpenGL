@@ -105,7 +105,7 @@ int main(void)
     // Active face culling
     glEnable(GL_CULL_FACE);
     glCullFace(GL_FRONT);    // Specify what face we want cull
-    glFrontFace(GL_CW);      // Specify witch the face's order's indices
+    glFrontFace(GL_CCW);      // Specify witch the face's order's indices
 
     Model model(MODEL_PATH); // Create a model
 
@@ -134,7 +134,7 @@ int main(void)
         }
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT); // Clear front buffer and depth buffer
-        ProcessCloseWindowInput(window);                                            // Process window's shutdown input
+        ProcessCloseWindowInput(window);                    // Process window's shutdown input
 
         MainCamera.Inputs(window);                                                     // Gets all MainCamera's inputs
         MainCamera.UpdateMatrix(CAMERA_FOV, CAMERA_MIN_DISTANCE, CAMERA_MAX_DISTANCE); // Initialize MainCamera's shaders

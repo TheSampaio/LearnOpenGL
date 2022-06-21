@@ -22,8 +22,8 @@ void main()
 {
 	currentPos = vec3(model * translation * rotation * scale * vec4(aPos, 1.0)); // Storing vertice's coordinates to export
 
-	normalCoord = aNormal;						     // Storing normal's coordinates to export
-	color = aColor;								     // Storing color's data to export
+	normalCoord = aNormal;						 // Storing normal's coordinates to export
+	color = aColor;								 // Storing color's data to export
 	texCoord = mat2(0.0, -1.0, 1.0, 0.0) * aTex; // Storing texture's coordinates to export
 
 	gl_Position = camMatrix * vec4(currentPos, 1.0); // Applying the vertice's positions
