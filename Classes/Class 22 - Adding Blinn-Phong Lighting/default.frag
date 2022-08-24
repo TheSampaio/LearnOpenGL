@@ -60,13 +60,15 @@ vec4 DirectionalLight() // Create a directional light
 
 	if (diffuse != 0.0f)
 	{
-	float specularLight = 0.50f;
-	vec3 viewDirection = normalize(camPos - currentPos);
-	vec3 reflectionDirection = reflect(-lightDirection, normal);
-	vec3 halfWayVec = normalize(viewDirection + lightDirection);
-	float specularAmount = pow(max(dot(normal, halfWayVec), 0.0f), 12);
-	float specular = specularAmount * specularLight;
-	}
+		float specularLight = 0.50f;
+		vec3 viewDirection = normalize(camPos - currentPos);
+		vec3 reflectionDirection = reflect(-lightDirection, normal);
+
+		vec3 halfWayVec = normalize(viewDirection + lightDirection);
+
+		float specularAmount = pow(max(dot(normal, halfWayVec), 0.0f), 16);
+		float specular = specularAmount * specularLight;
+	};
 
 	// Exporting the imported texture to show it on screen
 	return (texture(tex0, texCoord) * (diffuse + ambientLight) + texture(tex1, texCoord).r * specular) * lightColor;

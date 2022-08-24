@@ -112,16 +112,16 @@ void Camera::Inputs(GLFWwindow* window) // Process all camera's inputs
 		{
 			Camera::speed = initSpeed;
 		}
-	}
 
-	// Up and Down
-	//if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) // Go up
-	//{
-	//	Camera::position += (speed / 2) * upVector;
-	//}
+		// Up and Down
+		if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) // Go up
+		{
+			Camera::position += (speed / 2) * upVector;
+		}
 
-	//else if (glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS) // Go down
-	//{
-	//	Camera::position += (speed / 2) * -upVector;
-	//}
+		else if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS) // Go down
+		{
+			Camera::position += (speed / 2) * -upVector;
+		}
+	}	
 }
