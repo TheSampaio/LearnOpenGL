@@ -6,9 +6,9 @@ x64/
 Debug/
 Release/
 
-Class/Class 00 - Dependencies/Include/
-Class/Class 00 - Dependencies/Lib/
-Class/Class 00 - Dependencies/Source/
+Labs/Lab 00 - Dependencies/Include/
+Labs/Lab 00 - Dependencies/Lib/
+Labs/Lab 00 - Dependencies/Source/
 
 # Files
 *.user

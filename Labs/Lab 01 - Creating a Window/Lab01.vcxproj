@@ -22,8 +22,9 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{33e20c98-b52d-4d6c-ba13-d91badc87d84}</ProjectGuid>
-    <RootNamespace>Class01</RootNamespace>
+    <RootNamespace>Lab01</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Lab01</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -71,20 +72,20 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>D:\Aplicativos\LearnOpenGL\Class\Class 00 - Dependencies\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Aplicativos\LearnOpenGL\Class\Class 00 - Dependencies\Lib\x86\;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\Aplicativos\LearnOpenGL\Labs\Lab 00 - Dependencies\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Aplicativos\LearnOpenGL\Labs\Lab 00 - Dependencies\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>D:\Aplicativos\LearnOpenGL\Class\Class 00 - Dependencies\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Aplicativos\LearnOpenGL\Class\Class 00 - Dependencies\Lib\x86\;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\Aplicativos\LearnOpenGL\Labs\Lab 00 - Dependencies\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Aplicativos\LearnOpenGL\Labs\Lab 00 - Dependencies\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>D:\Aplicativos\LearnOpenGL\Class\Class 00 - Dependencies\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Aplicativos\LearnOpenGL\Class\Class 00 - Dependencies\Lib\x64\;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\Aplicativos\LearnOpenGL\Labs\Lab 00 - Dependencies\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Aplicativos\LearnOpenGL\Labs\Lab 00 - Dependencies\Lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>D:\Aplicativos\LearnOpenGL\Class\Class 00 - Dependencies\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Aplicativos\LearnOpenGL\Class\Class 00 - Dependencies\Lib\x64\;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\Aplicativos\LearnOpenGL\Labs\Lab 00 - Dependencies\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Aplicativos\LearnOpenGL\Labs\Lab 00 - Dependencies\Lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -147,7 +148,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Class 00 - Dependencies\Source\glad.c" />
+    <ClCompile Include="..\Lab 00 - Dependencies\Source\glad.c" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
