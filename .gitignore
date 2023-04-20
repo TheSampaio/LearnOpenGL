@@ -1,0 +1,14 @@
+# Directories
+.vs/
+.vscode/
+
+x64/
+Debug/
+Release/
+
+Class/Class 00 - Dependencies/Include/
+Class/Class 00 - Dependencies/Lib/
+Class/Class 00 - Dependencies/Source/
+
+# Files
+*.user
