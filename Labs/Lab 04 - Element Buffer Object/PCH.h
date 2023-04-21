@@ -12,6 +12,5 @@
 // OpenGL's loader (GLAD) must be included before GLFW
 #include <glad/glad.h>
 #include <glfw/glfw3.h>
-#include <glm/glm.hpp>
 
 #endif // !LEARNOPENGL_PCH_H
