@@ -5,7 +5,7 @@
 #include <glad/glad.h>
 #include <glfw/glfw3.h>
 
-// Ownership includes
+// Project includes
 #include "Debug.h"
 
 // Generates a new viewport
