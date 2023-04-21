@@ -51,7 +51,7 @@ int main()
 
     // ===== Data Input ================================================================================================== //
     
-    // Vertices array
+    // Vertices's array
     std::array<GLfloat, 9> Vertices
     {
         -0.5f, -0.5f, 0.0f,
