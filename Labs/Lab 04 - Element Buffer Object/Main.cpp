@@ -38,10 +38,10 @@ int main()
 
     // Vertex shader's source code (Temporary)
     const char* VertexShaderSource = "#version 330 core\n"
-        "layout (location = 0) in vec3 aPos;\n"
+        "layout (location = 0) in vec3 inPosition;\n"
         "void main()\n"
         "{\n"
-        "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+        "   gl_Position = vec4(inPosition, 1.0);\n"
         "}\0";
 
     // Fragment shader's source code (Temporary)
@@ -49,7 +49,7 @@ int main()
         "out vec4 gl_Color;\n"
         "void main()\n"
         "{\n"
-        "gl_Color = vec4(1.0f, 0.5f, 0.0f, 1.0f);\n"
+        "gl_Color = vec4(1.0, 0.5, 0.0, 1.0);\n"
         "}\0";
 
     // ===== Shaders and Shader Program ================================================================================== //
