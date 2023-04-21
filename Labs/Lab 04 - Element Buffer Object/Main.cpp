@@ -123,7 +123,7 @@ int main()
         glBindVertexArray(VAO);
 
         // Draw a triangle using the EBO set-up
-        glDrawElements(GL_TRIANGLES, Indices.size(), GL_UNSIGNED_INT, nullptr);
+        glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(Indices.size()), GL_UNSIGNED_INT, nullptr);
 
         // =============================================================================================================== //
 
