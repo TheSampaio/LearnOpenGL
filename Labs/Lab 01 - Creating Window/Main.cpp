@@ -6,7 +6,7 @@
 
 int main()
 {
-    unsigned short Width = 800, Height = 600;
+    unsigned short Width = 800, Height = 680;
     const char* Title = "Window | OpenGL";
 
     // Initializes GLFW and log it if failed

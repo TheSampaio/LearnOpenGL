@@ -11,7 +11,7 @@ int main()
     Window& MainWindow = Window::GetInstance();
 
     // Set-ups the window
-    MainWindow.SetSize(1280, 720);
+    MainWindow.SetSize(800, 680);
     MainWindow.SetTitle("Window | OpenGL");
     MainWindow.SetVerticalSynchronization(false);
     MainWindow.SetBackgroundColour(0.2f, 0.3f, 0.5f);

@@ -14,7 +14,7 @@ void FramebufferCallback(GLFWwindow* Window, int Width, int Height);
 int main()
 {
     // Store window's title and size
-    unsigned short Width = 800, Height = 600;
+    unsigned short Width = 800, Height = 680;
     const char* Title = "Window | OpenGL";
 
     // Initializes GLFW and log it if failed
