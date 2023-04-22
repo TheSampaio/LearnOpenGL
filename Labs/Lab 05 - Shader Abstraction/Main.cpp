@@ -14,18 +14,19 @@ int main()
     MainWindow.SetSize(800, 680);
     MainWindow.SetTitle("Window | OpenGL");
     MainWindow.SetVerticalSynchronization(false);
-    MainWindow.SetBackgroundColour(0.2f, 0.3f, 0.5f);
+    MainWindow.SetBackgroundColour(0.2f, 0.2f, 0.4f);
 
     // Creates the window
     MainWindow.Create();
 
     // Vertices's array
-    std::array<GLfloat, 12> Vertices
+    std::array<GLfloat, 24> Vertices
     {
-        -0.8f, -0.8f, 0.0f, // 0
-         0.8f, -0.8f, 0.0f, // 1
-        -0.8f,  0.8f, 0.0f, // 2
-         0.8f,  0.8f, 0.0f, // 3
+        // === Positions       // === Colours
+        -0.8f, -0.8f,  0.0f,    1.0f,  0.0f,  0.0f,  // 0
+         0.8f, -0.8f,  0.0f,    1.0f,  0.0f,  0.0f,  // 1
+        -0.8f,  0.8f,  0.0f,    1.0f,  0.8f,  0.0f,  // 2
+         0.8f,  0.8f,  0.0f,    1.0f,  0.8f,  0.0f,  // 3
     };
 
     // Indices's array
@@ -57,9 +58,13 @@ int main()
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, Indices.size() * sizeof(GLuint), Indices.data(), GL_STATIC_DRAW);
 
-    // Set-ups the VAO
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), nullptr);
+    // Set-ups the VAO's layout
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), nullptr);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (void*)(3 * sizeof(GLfloat)));
+
+    // Enables the VAO's layout
     glEnableVertexAttribArray(0);
+    glEnableVertexAttribArray(1);
 
     // Unbind VAO, VBO and EBO to avoid bugs
     glBindBuffer(GL_ARRAY_BUFFER, 0);
