@@ -51,11 +51,19 @@ int main()
     // ===== Data Input ================================================================================================== //
     
     // Vertices's array
-    const std::array<GLfloat, 9> Vertices
+    const std::array<GLfloat, 12> Vertices
     {
         -0.8f, -0.8f, 0.0f,
          0.8f, -0.8f, 0.0f,
-         0.0f,  0.8f, 0.0f,
+        -0.8f,  0.8f, 0.0f,
+         0.8f,  0.8f, 0.0f
+    };
+
+    // Indices's array
+    const std::array<GLuint, 6> Indices
+    {
+        0, 1, 2,
+        2, 1, 3
     };
 
     // Vertex shader's source code (Temporary)
@@ -102,16 +110,21 @@ int main()
     // ===== Buffers Creation ============================================================================================ //
     
     // Creates identifies for the VAO (Vertex Array Object) and VBO (Vertex Buffer Object)
-    GLuint VAO = 0, VBO = 0;
+    GLuint VAO = 0, VBO = 0, EBO = 0;
 
     // Generates a VAO
     glGenVertexArrays(1, &VAO);
     glBindVertexArray(VAO);
 
-    // Generates a VBO and setups it
+    // Generates a VBO and set-ups it
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, Vertices.size() * sizeof(GLfloat), Vertices.data(), GL_STATIC_DRAW);
+
+    // Generates a EBO and set-ups it
+    glGenBuffers(1, &EBO);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, Indices.size() * sizeof(GLuint), Indices.data(), GL_STATIC_DRAW);
 
     // Set-ups the VAO
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), nullptr);
@@ -120,6 +133,7 @@ int main()
     // Unbind VAO and VBO to avoid bugs
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
     // =================================================================================================================== //
 
@@ -139,8 +153,8 @@ int main()
             glUseProgram(ShaderProgram);
             glBindVertexArray(VAO);
 
-            // Draw a triangle using the VBO set-up
-            glDrawArrays(GL_TRIANGLES, 0, Vertices.size());
+            // Draw a triangle using the EBO set-up
+            glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(Indices.size()), GL_UNSIGNED_INT, nullptr);
         }
 
         // Swaps window's buffers
