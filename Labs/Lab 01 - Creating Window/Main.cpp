@@ -6,7 +6,7 @@
 
 int main()
 {
-    unsigned short Width = 800, Height = 680;
+    unsigned short Width = 800, Height = 600;
     const char* Title = "Window | OpenGL";
 
     // Initializes GLFW and log it if failed
@@ -20,6 +20,9 @@ int main()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+    // Locks window's size
+    glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
     // Creates a window (Windowed mode)
     GLFWwindow* pWindow = glfwCreateWindow(Width, Height, Title, nullptr, nullptr);
@@ -48,7 +51,7 @@ int main()
 
         // Clears colour buffer and changes the window's background colour
         glClear(GL_COLOR_BUFFER_BIT);
-        glClearColor(0.2f, 0.3f, 0.5f, 1.0f);
+        glClearColor(0.2f, 0.2f, 0.4f, 1.0f);
 
         // Swaps window's buffers
         glfwSwapBuffers(pWindow);

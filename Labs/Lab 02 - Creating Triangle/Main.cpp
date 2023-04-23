@@ -8,13 +8,10 @@
 // Project includes
 #include "Debug.h"
 
-// Generates a new viewport
-void FramebufferCallback(GLFWwindow* Window, int Width, int Height);
-
 int main()
 {
     // Store window's title and size
-    unsigned short Width = 800, Height = 680;
+    unsigned short Width = 800, Height = 600;
     const char* Title = "Window | OpenGL";
 
     // Initializes GLFW and log it if failed
@@ -28,6 +25,9 @@ int main()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+    // Locks window's size
+    glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
     // Creates a window (Windowed mode)
     GLFWwindow* pWindow = glfwCreateWindow(Width, Height, Title, nullptr, nullptr);
@@ -48,13 +48,10 @@ int main()
     // Creates a viewport for the window
     glViewport(0, 0, Width, Height);
 
-    // Registers window's callbacks
-    glfwSetFramebufferSizeCallback(pWindow, FramebufferCallback);
-
     // ===== Data Input ================================================================================================== //
     
     // Vertices's array
-    std::array<GLfloat, 9> Vertices
+    const std::array<GLfloat, 9> Vertices
     {
         -0.5f, -0.5f, 0.0f,
          0.5f, -0.5f, 0.0f,
@@ -136,16 +133,15 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT);
         glClearColor(0.2f, 0.3f, 0.5f, 1.0f);
 
-        // === Draw bellow ========== //
+        // Draw call scope (This scope is to organize!)
+        {
+            // Informs OpenGL which shader program and VAO we want to use
+            glUseProgram(ShaderProgram);
+            glBindVertexArray(VAO);
 
-        // Informs OpenGL which shader program and VAO we want to use
-        glUseProgram(ShaderProgram);
-        glBindVertexArray(VAO);
-
-        // Draw a triangle using the VBO set-up
-        glDrawArrays(GL_TRIANGLES, 0, Vertices.size());
-
-        // ========================== //
+            // Draw a triangle using the VBO set-up
+            glDrawArrays(GL_TRIANGLES, 0, Vertices.size());
+        }
 
         // Swaps window's buffers
         glfwSwapBuffers(pWindow);
@@ -165,9 +161,4 @@ int main()
     // Finalizes GLFW
     glfwTerminate();
     return 0;
-}
-
-void FramebufferCallback(GLFWwindow* Window, int Width, int Height)
-{
-    glViewport(0, 0, Width, Height);
 }
