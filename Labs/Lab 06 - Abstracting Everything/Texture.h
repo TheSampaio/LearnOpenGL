@@ -7,9 +7,6 @@ public:
 	Texture(const char* FilePath, GLenum Slot = GL_TEXTURE0, GLenum Format = GL_RGBA, GLenum Filter = GL_LINEAR);
 	~Texture();
 
-	// Sets the texture's sampler uniform
-	void SetUniform(class Shader& ShaderProgram, const char* Uniform, GLuint Unit);
-
 	// Binds the texture
 	inline void Bind() { glBindTexture(GL_TEXTURE_2D, m_Id); }
 

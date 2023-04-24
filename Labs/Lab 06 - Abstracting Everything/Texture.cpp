@@ -55,10 +55,3 @@ Texture::~Texture()
 {
 	glDeleteTextures(1, &m_Id);
 }
-
-void Texture::SetUniform(Shader& ShaderProgram, const char* Uniform, GLuint Unit)
-{
-    // Creates a uniform sampler for the texture
-    ShaderProgram.Activate();
-    glUniform1i(glGetUniformLocation(ShaderProgram.GetId(), Uniform), Unit);
-}
