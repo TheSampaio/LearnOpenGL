@@ -18,8 +18,8 @@ public:
 	{ glDrawElements(Primitive, static_cast<GLsizei>(Indices.size()), GL_UNSIGNED_INT, nullptr); }
 
 	// Set-ups an uniform 1 integer
-	inline void SetUniform1i(Shader& ShaderProgram, const GLchar* Name, GLint Data)
-	{ glUniform1i(glGetUniformLocation(ShaderProgram.GetId(), Name), Data); }
+	inline void SetUniform1i(Shader& ShaderProgram, const GLchar* Name, GLint Integer)
+	{ glUniform1i(glGetUniformLocation(ShaderProgram.GetId(), Name), Integer); }
 
 	// Set-ups an uniform matrix 4 float vector
 	inline void SetUniformMatrix4fv(Shader& ShaderProgram, const GLchar* Name, glm::mat4 Matrix)
