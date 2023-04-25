@@ -7,7 +7,7 @@
 
 int main()
 {
-    // Gets the window's instance reference
+    // Gets the window's and renderer's static instance references
     Window& Window = Window::GetInstance();
     Renderer& Renderer = Renderer::GetInstance();
 
