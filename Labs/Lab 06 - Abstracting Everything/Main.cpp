@@ -13,16 +13,16 @@
 int main()
 {
     // Gets the window's instance reference
-    Window& MainWindow = Window::GetInstance();
+    Window& Window = Window::GetInstance();
 
     // Set-ups the window
-    MainWindow.SetSize(800, 600);
-    MainWindow.SetTitle("Window | OpenGL");
-    MainWindow.SetVerticalSynchronization(true);
-    MainWindow.SetBackgroundColour(0.2f, 0.2f, 0.4f);
+    Window.SetSize(800, 600);
+    Window.SetTitle("Window | OpenGL");
+    Window.SetVerticalSynchronization(true);
+    Window.SetBackgroundColour(0.2f, 0.2f, 0.4f);
 
     // Creates the window
-    MainWindow.Create();
+    Window.Create();
 
     // Vertices's array
     const std::vector<GLfloat> Vertices
@@ -63,11 +63,11 @@ int main()
     ElementBuffer->Unbind();
 
     // Main loop (Game loop)
-    while (!MainWindow.Close())
+    while (!Window.Close())
     {
         // Process all window's events and clear all buffers
-        MainWindow.ProcessEvents();
-        MainWindow.ClearBuffers();
+        Window.ProcessEvents();
+        Window.ClearBuffers();
 
         // Informs OpenGL which shader program and VAO we want to use
         DefaultProgram->Activate();
@@ -81,7 +81,7 @@ int main()
         glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(Indices.size()), GL_UNSIGNED_INT, nullptr);
 
         // Swaps window's buffers
-        MainWindow.SwapBuffers();
+        Window.SwapBuffers();
     }
 
     // Deletes what we need anymore
