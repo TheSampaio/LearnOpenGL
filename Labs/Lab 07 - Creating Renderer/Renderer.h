@@ -17,7 +17,7 @@ public:
 	inline void Draw(std::vector<GLuint> Indices, GLenum Primitive = GL_TRIANGLES) { glDrawElements(Primitive, static_cast<GLsizei>(Indices.size()), GL_UNSIGNED_INT, nullptr); }
 
 	// Set-ups an uniform 1 integer
-	inline void SetUniform1i(Shader& ShaderProgram, const GLchar* Name, GLint Data) { glUniform1i(glGetUniformLocation(ShaderProgram.GetId(), Name), Data); }
+	inline void SetUniform1i(Shader& ShaderProgram, const GLchar* Name, GLint Integer) { glUniform1i(glGetUniformLocation(ShaderProgram.GetId(), Name), Integer); }
 
 private:
 	Renderer() {};
