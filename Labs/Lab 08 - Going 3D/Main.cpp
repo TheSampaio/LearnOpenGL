@@ -53,7 +53,7 @@ int main()
     EBO* ElementBuffer = new EBO(Indices);
 
     // Loads and creates a texture
-    Texture* GigaChad = new Texture("../../Resources/Textures/diffuse-sandbrick-01.png", GL_RGB);
+    Texture* Sandbrick = new Texture("../../Resources/Textures/diffuse-sandbrick-01.png", GL_RGB);
 
     // Set-ups VAO's layouts
     VertexArray->AttribPointer(0, 3, 8 * sizeof(GLfloat), 0);                   // Position
@@ -99,7 +99,7 @@ int main()
 
         // Set-ups texture's uniform and binds the texture
         Renderer.SetUniform1i(*DefaultProgram, "DiffuseSampler", 0);
-        GigaChad->Bind();
+        Sandbrick->Bind();
 
         // Draw call command using indices
         Renderer.Draw(Indices);
@@ -113,7 +113,7 @@ int main()
     delete VertexBuffer;
     delete VertexArray;
     delete ElementBuffer;
-    delete GigaChad;
+    delete Sandbrick;
 
     return 0;
 }
