@@ -70,7 +70,7 @@ int main()
     Timer.Start();
 
     // Creates a ghost camera
-    Camera* GhostCamera = new Camera();
+    Camera* DefaultCamera = new Camera();
 
     // Main loop (Game loop)
     while (!Window.Close())
@@ -83,7 +83,7 @@ int main()
         Window.ClearBuffers();
 
         // Process all camera's events and calculates the VP matrix
-        GhostCamera->ProccessEvents(*DefaultProgram);
+        DefaultCamera->ProccessEvents(*DefaultProgram);
 
         // Informs OpenGL which shader program and VAO we want to use
         DefaultProgram->Activate();
@@ -113,12 +113,11 @@ int main()
 
     // Deletes what we need anymore
     delete DefaultProgram;
-    delete GhostCamera;
+    delete DefaultCamera;
 
     delete VertexBuffer;
     delete VertexArray;
     delete ElementBuffer;
-
     delete Sandbrick;
 
     return 0;

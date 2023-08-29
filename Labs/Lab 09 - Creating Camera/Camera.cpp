@@ -25,54 +25,36 @@ void Camera::ProccessEvents(Shader& ShaderProgram)
 	// === Keyboard Inputs ===
 	// • Forward and backward
 	if (glfwGetKey(Window::GetInstance().GetId(), GLFW_KEY_W) == GLFW_PRESS)
-	{
 		m_Position += m_Speed * m_Rotation;
-	}
 
 	else if (glfwGetKey(Window::GetInstance().GetId(), GLFW_KEY_A) == GLFW_PRESS)
-	{
 		m_Position += m_Speed * -glm::normalize(glm::cross(m_Rotation, m_Up));
-	}
 
 	// • Right and left
 	if (glfwGetKey(Window::GetInstance().GetId(), GLFW_KEY_D) == GLFW_PRESS)
-	{
 		m_Position += m_Speed * glm::normalize(glm::cross(m_Rotation, m_Up));
-	}
 
 	else if (glfwGetKey(Window::GetInstance().GetId(), GLFW_KEY_S) == GLFW_PRESS)
-	{
 		m_Position += m_Speed * -m_Rotation;
-	}
 
 	// • Up and down
 	if (glfwGetKey(Window::GetInstance().GetId(), GLFW_KEY_E) == GLFW_PRESS)
-	{
 		m_Position += m_Speed * m_Up;
-	}
 
 	else if (glfwGetKey(Window::GetInstance().GetId(), GLFW_KEY_Q) == GLFW_PRESS)
-	{
 		m_Position += m_Speed * -m_Up;
-	}
 
 	// • Max speed
 	if (glfwGetKey(Window::GetInstance().GetId(), GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
-	{
-		m_Speed = 0.6f;
-	}
+		m_Speed = 0.2f;
 
 	// • Normal speed
 	else if (glfwGetKey(Window::GetInstance().GetId(), GLFW_KEY_LEFT_SHIFT) == GLFW_RELEASE)
-	{
-		m_Speed = 0.2f;
-	}
+		m_Speed = 0.1f;
 
 	// • Min speed
 	if (glfwGetKey(Window::GetInstance().GetId(), GLFW_KEY_LEFT_ALT) == GLFW_PRESS)
-	{
 		m_Speed = 0.01f;
-	}
 
 	// === Mouse Inputs ===
 	if (glfwGetMouseButton(Window::GetInstance().GetId(), GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS)
@@ -102,9 +84,7 @@ void Camera::ProccessEvents(Shader& ShaderProgram)
 		glm::vec3 NewOrientation = glm::rotate(m_Rotation, glm::radians(-Pitch), glm::normalize(glm::cross(m_Rotation, m_Up)));
 
 		if (abs(glm::angle(NewOrientation, m_Up) - glm::radians(90.0f)) <= glm::radians(85.0f))
-		{
 			m_Rotation = NewOrientation;
-		}
 
 		// Rotates the camera left and right
 		m_Rotation = glm::rotate(m_Rotation, glm::radians(-Yaw), m_Up);
