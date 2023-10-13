@@ -10,11 +10,13 @@
         <details><summary>Classes Preview</summary>
         <!-- New Preview Bwllow -->
         <h3>1) Creating Window</h3>
-        <pre>In this lab we are going to learn how to create a window using GLFW.</pre>
+        <article>In this lab we are going to learn how to create a window using GLFW.</article>
+        <br>
         <img src="Resources/Thumbnail/Classes/preview-lab-01.png" width=500 >
         <!-- New Preview Bwllow -->
         <h3>2) Creating Triangle</h3>
-        <pre align=>In this lab we are going to learn how to "load" OpenGL using GLAD and use it to create a simple triangle with a vertex buffer object (VBO).</pre>
+        <article>In this lab we are going to learn how to "load" OpenGL using GLAD and use it to create a simple triangle with a vertex buffer object (VBO).</article>
+        <br>
         <img src="Resources/Thumbnail/Classes/preview-lab-02.png" width=500 >
         </details>
         <br>
