@@ -14,7 +14,7 @@
         <img src="Resources/Thumbnail/Classes/preview-lab-01.png" width=500 >
         <!-- New Preview Bwllow -->
         <h3>2) Creating Triangle</h3>
-        <pre align=>In this lab we are going to learn how to create a simple triangle using a vertex buffer object (VBO).</pre>
+        <pre align=>In this lab we are going to learn how to "load" OpenGL using GLAD and use it to create a simple triangle with a vertex buffer object (VBO).</pre>
         <img src="Resources/Thumbnail/Classes/preview-lab-02.png" width=500 >
         </details>
         <br>
