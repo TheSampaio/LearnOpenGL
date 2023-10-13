@@ -9,7 +9,7 @@ Camera::Camera(float FieldOfView, float MinClipDistance, float MaxClipDistance)
 	: m_bFirstClick(true)
 {
 	ClipDistance = { MinClipDistance, MaxClipDistance };
-	m_Sensitivity = 200.0f;
+	m_Sensitivity = 100.0f;
 	m_Speed = 0.0f;
 	m_FieldOfView = FieldOfView;
 
@@ -25,36 +25,36 @@ void Camera::Inputs()
 	// === Keyboard Inputs ===
 	// • Forward and backward
 	if (glfwGetKey(Window::GetInstance().GetId(), GLFW_KEY_W) == GLFW_PRESS)
-		m_Position += m_Speed * m_Rotation;
+		m_Position += m_Speed * m_Rotation * Timer::GetInstance().GetDeltaTime();
 
 	else if (glfwGetKey(Window::GetInstance().GetId(), GLFW_KEY_A) == GLFW_PRESS)
-		m_Position += m_Speed * -glm::normalize(glm::cross(m_Rotation, m_Up));
+		m_Position += m_Speed * -glm::normalize(glm::cross(m_Rotation, m_Up)) * Timer::GetInstance().GetDeltaTime();
 
 	// • Right and left
 	if (glfwGetKey(Window::GetInstance().GetId(), GLFW_KEY_D) == GLFW_PRESS)
-		m_Position += m_Speed * glm::normalize(glm::cross(m_Rotation, m_Up));
+		m_Position += m_Speed * glm::normalize(glm::cross(m_Rotation, m_Up)) * Timer::GetInstance().GetDeltaTime();
 
 	else if (glfwGetKey(Window::GetInstance().GetId(), GLFW_KEY_S) == GLFW_PRESS)
-		m_Position += m_Speed * -m_Rotation;
+		m_Position += m_Speed * -m_Rotation * Timer::GetInstance().GetDeltaTime();
 
 	// • Up and down
 	if (glfwGetKey(Window::GetInstance().GetId(), GLFW_KEY_E) == GLFW_PRESS)
-		m_Position += m_Speed * m_Up;
+		m_Position += m_Speed * m_Up * Timer::GetInstance().GetDeltaTime();
 
 	else if (glfwGetKey(Window::GetInstance().GetId(), GLFW_KEY_Q) == GLFW_PRESS)
-		m_Position += m_Speed * -m_Up;
+		m_Position += m_Speed * -m_Up * Timer::GetInstance().GetDeltaTime();
 
 	// • Max speed
 	if (glfwGetKey(Window::GetInstance().GetId(), GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
-		m_Speed = 0.2f;
+		m_Speed = 10.0f;
 
 	// • Normal speed
 	else if (glfwGetKey(Window::GetInstance().GetId(), GLFW_KEY_LEFT_SHIFT) == GLFW_RELEASE)
-		m_Speed = 0.1f;
+		m_Speed = 2.0f;
 
 	// • Min speed
 	if (glfwGetKey(Window::GetInstance().GetId(), GLFW_KEY_LEFT_ALT) == GLFW_PRESS)
-		m_Speed = 0.01f;
+		m_Speed = 0.5f;
 
 	// === Mouse Inputs ===
 	if (glfwGetMouseButton(Window::GetInstance().GetId(), GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS)

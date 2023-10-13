@@ -201,7 +201,7 @@ int main()
 
         // Clears colour buffer and changes the window's background colour
         glClear(GL_COLOR_BUFFER_BIT);
-        glClearColor(0.2f, 0.3f, 0.5f, 1.0f);
+        glClearColor(0.2f, 0.2f, 0.4f, 1.0f);
 
         // Draw call scope (This scope is to organize!)
         {

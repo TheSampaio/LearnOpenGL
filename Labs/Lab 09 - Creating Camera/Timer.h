@@ -7,14 +7,14 @@ public:
 	// Returns a reference for the timer
 	static inline Timer& GetInstance() { static Timer m_Instance; return m_Instance; }
 
-	// Resets the timer and updates the delta time
-	void Reset();
+	// Updates the timer and updates the delta time
+	void Update();
 
-	// Starts the timer
-	inline void Start() { m_Start = static_cast<float>(glfwGetTime()); }
+	// Returns the amount time
+	inline float GetAmountTime() { return m_Amount; }
 
 	// Returns the delta time
-	inline float GetDeltaTime() { return m_DeltaTime; }
+	inline float GetDeltaTime() { return m_Delta; }
 
 private:
 	Timer();
@@ -24,7 +24,7 @@ private:
 	Timer operator=(const Timer&) = delete;
 
 	// Attributes
-	float m_Start, m_End, m_DeltaTime;
+	float m_Amount, m_Current, m_Elapsed, m_Delta;
 };
 
 #endif // !LEARNOPENGL_TIMER_H

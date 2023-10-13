@@ -3,16 +3,17 @@
 
 Timer::Timer()
 {
-	m_Start = 0.0f;
-	m_End = 0.0f;
-	m_DeltaTime = 0.0f;
+	m_Amount = 0.0f;
+	m_Current = 0.0f;
+	m_Elapsed = 0.0f;
+	m_Delta = 0.0f;
 }
 
-void Timer::Reset()
+void Timer::Update()
 {
-	// Increase timer
-	m_End = static_cast<float>(glfwGetTime());
-
-	m_DeltaTime += (m_End - m_Start);
-	m_Start = m_End;
+	// Calculates delta time
+	m_Current = static_cast<float>(glfwGetTime());
+	m_Delta = m_Current - m_Elapsed;
+	m_Amount += m_Delta;
+	m_Elapsed = m_Current;
 }

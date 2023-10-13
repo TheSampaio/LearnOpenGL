@@ -4,7 +4,7 @@
 class Camera
 {
 public:
-	Camera(float FieldOfView = 60.0f, float MinClipDistance = 0.05f, float MaxClipDistance = 100.0f);
+	Camera(float FieldOfView, float MinClipDistance = 0.05f, float MaxClipDistance = 100.0f);
 
 	// Process all camera's event
 	void Inputs();

@@ -17,7 +17,7 @@ int main()
     // Set-ups the window
     Window.SetSize(1360, 768);
     Window.SetTitle("Window | OpenGL");
-    Window.SetVerticalSynchronization(true);
+    Window.SetVerticalSynchronization(false);
     Window.SetBackgroundColour(0.2f, 0.2f, 0.4f);
 
     // Creates the window
@@ -54,7 +54,7 @@ int main()
     EBO* ElementBuffer = new EBO(Indices);
 
     // Loads and creates a texture
-    Texture* Sandbrick = new Texture("../../Resources/Textures/diffuse-sandbrick-01.png", GL_RGB);
+    Texture* Sandbrick = new Texture("../../Resources/Textures/diffuse-sandbrick-01.png");
 
     // Set-ups VAO's layouts
     VertexArray->AttribPointer(0, 3, 8 * sizeof(GLfloat), 0);                   // Position
@@ -66,17 +66,14 @@ int main()
     VertexArray->Unbind();
     ElementBuffer->Unbind();
 
-    // Starts the timer
-    Timer.Start();
-
     // Creates a ghost camera
-    Camera* DefaultCamera = new Camera();
+    Camera* DefaultCamera = new Camera(80.0f);
 
     // Main loop (Game loop)
     while (!Window.Close())
     {
-        // Resets timer and updates delta time
-        Timer.Reset();
+        // Updates timer's amount and delta times
+        Timer.Update();
 
         // Process all window's events and clear all buffers
         Window.ProcessEvents();
@@ -95,9 +92,9 @@ int main()
             glm::mat4 Model = glm::mat4(1.0f);
 
             // Set-ups the model matrix
-            Model = glm::translate(Model, glm::vec3{0.0f, 1.0f, 0.0f} *0.25f);
-            Model = glm::translate(Model, glm::vec3{0.0f, 0.0f, 1.0f} *-0.15f);
-            Model = glm::rotate(Model, glm::radians(50.0f * Timer.GetDeltaTime()), glm::vec3{ 0.0f, 1.0f, 0.0f });
+            Model = glm::translate(Model, glm::vec3{0.0f, 1.0f, 0.0f} *  0.25f);
+            Model = glm::translate(Model, glm::vec3{0.0f, 0.0f, 1.0f} * -0.15f);
+            Model = glm::rotate(Model, glm::radians(50.0f * Timer.GetAmountTime()), glm::vec3{ 0.0f, 1.0f, 0.0f });
 
             // Send data from CPU to GPU by using uniforms
             Renderer.SetUniformMatrix4fv(*DefaultProgram, "Model", Model);
