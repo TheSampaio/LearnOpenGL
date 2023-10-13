@@ -17,7 +17,6 @@
         <pre>In this lab we are going to learn how to "load" OpenGL using GLAD and use it to create a simple triangle with a vertex buffer object (VBO).</pre>
         <img src="Resources/Thumbnail/Classes/preview-lab-02.png" width=500 >
         </details>
-        <br>
     <h1>Credits</h2>
   Excellent ways to learn OpenGL:<br>
   • Reading great content: <a href="https://learnopengl.com/">Learn OpenGL</a><br>
