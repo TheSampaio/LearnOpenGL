@@ -7,8 +7,11 @@ public:
 	Shader(const char* VertexShaderFile, const char* FragmentShaderFile);
 	~Shader();
 
-	// Activates the shader program
-	inline void Activate() { glUseProgram(m_Id); }
+	// Binds the shader program
+	inline void Bind() { glUseProgram(m_Id); }
+
+	// Unbids the shader program
+	inline void Unbind() { glUseProgram(0); }
 
 	// Returns the shader program's ID
 	inline GLuint& GetId() { return m_Id; }

@@ -82,43 +82,50 @@ int main()
         Window.ProcessEvents();
         Window.ClearBuffers();
 
-        // Process all camera's events and calculates the VP matrix
-        DefaultCamera->ProccessEvents(*DefaultProgram);
+        {
+            // Informs OpenGL which shader program and VAO we want to use
+            DefaultProgram->Bind();
+            VertexArray->Bind();
 
-        // Informs OpenGL which shader program and VAO we want to use
-        DefaultProgram->Activate();
-        VertexArray->Bind();
+            // Process all camera's events and calculates the VP matrix
+            DefaultCamera->Inputs();
+            DefaultCamera->Update(*DefaultProgram);
 
-        // Creates a model matrix
-        glm::mat4 Model = glm::mat4(1.0f);
+            // Creates a model matrix
+            glm::mat4 Model = glm::mat4(1.0f);
 
-        // Set-ups the model matrix
-        Model = glm::translate(Model, glm::vec3{0.0f, 1.0f, 0.0f} *  0.25f);
-        Model = glm::translate(Model, glm::vec3{0.0f, 0.0f, 1.0f} * -0.15f);
-        Model = glm::rotate(Model, glm::radians(50.0f * Timer.GetDeltaTime()), glm::vec3{ 0.0f, 1.0f, 0.0f });
+            // Set-ups the model matrix
+            Model = glm::translate(Model, glm::vec3{0.0f, 1.0f, 0.0f} *0.25f);
+            Model = glm::translate(Model, glm::vec3{0.0f, 0.0f, 1.0f} *-0.15f);
+            Model = glm::rotate(Model, glm::radians(50.0f * Timer.GetDeltaTime()), glm::vec3{ 0.0f, 1.0f, 0.0f });
 
-        // Send data from CPU to GPU by using uniforms
-        Renderer.SetUniformMatrix4fv(*DefaultProgram, "Model", Model);
+            // Send data from CPU to GPU by using uniforms
+            Renderer.SetUniformMatrix4fv(*DefaultProgram, "Model", Model);
 
-        // Set-ups texture's uniform and binds the texture
-        Renderer.SetUniform1i(*DefaultProgram, "DiffuseSampler", 0);
-        Sandbrick->Bind();
+            // Set-ups texture's uniform and binds the texture
+            Renderer.SetUniform1i(*DefaultProgram, "DiffuseSampler", 0);
+            Sandbrick->Bind();
 
-        // Draw call command using indices
-        Renderer.Draw(Indices);
+            // Draw call command using indices
+            Renderer.Draw(Indices);
+
+            // Unbind everything binded to avoid bugs
+            Sandbrick->Unbind();
+            VertexArray->Unbind();
+            DefaultProgram->Unbind();
+        }
 
         // Swaps window's buffers
         Window.SwapBuffers();
     }
 
     // Deletes what we need anymore
-    delete DefaultProgram;
     delete DefaultCamera;
-
     delete VertexBuffer;
     delete VertexArray;
     delete ElementBuffer;
     delete Sandbrick;
+    delete DefaultProgram;
 
     return 0;
 }

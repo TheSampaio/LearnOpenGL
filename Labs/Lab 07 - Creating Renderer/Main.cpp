@@ -65,27 +65,34 @@ int main()
         Window.ProcessEvents();
         Window.ClearBuffers();
 
-        // Informs OpenGL which shader program and VAO we want to use
-        DefaultProgram->Activate();
-        VertexArray->Bind();
+        {
+            // Informs OpenGL which shader program and VAO we want to use
+            DefaultProgram->Bind();
+            VertexArray->Bind();
 
-        // Set-ups texture's uniform and binds the texture
-        Renderer.SetUniform1i(*DefaultProgram, "DiffuseSampler", 0);
-        GigaChad->Bind();
+            // Set-ups texture's uniform and binds the texture
+            Renderer.SetUniform1i(*DefaultProgram, "DiffuseSampler", 0);
+            GigaChad->Bind();
 
-        // Draw call command using indices
-        Renderer.Draw(Indices);
+            // Draw call command using indices
+            Renderer.Draw(Indices);
 
-        // Swaps window's buffers
-        Window.SwapBuffers();
+            // Swaps window's buffers
+            Window.SwapBuffers();
+
+            // Unbind everything binded to avoid bugs
+            GigaChad->Unbind();
+            VertexArray->Unbind();
+            DefaultProgram->Unbind();
+        }
     }
 
     // Deletes what we need anymore
-    delete DefaultProgram;
     delete VertexBuffer;
     delete VertexArray;
     delete ElementBuffer;
     delete GigaChad;
+    delete DefaultProgram;
 
     return 0;
 }

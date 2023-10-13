@@ -53,9 +53,9 @@ int main()
     // Vertices's array
     const std::array<GLfloat, 9> Vertices
     {
-        -0.8f, -0.8f, 0.0f,
-         0.8f, -0.8f, 0.0f,
-         0.0f,  0.8f, 0.0f,
+        -0.8f, -0.8f,  0.0f,
+         0.8f, -0.8f,  0.0f,
+         0.0f,  0.8f,  0.0f,
     };
 
     // Vertex shader's source code (Temporary)
@@ -141,6 +141,10 @@ int main()
 
             // Draw a triangle using the VBO set-up
             glDrawArrays(GL_TRIANGLES, 0, Vertices.size());
+
+            // Unbind everything binded to avoid bugs
+            glBindVertexArray(0);
+            glUseProgram(0);
         }
 
         // Swaps window's buffers
@@ -148,12 +152,11 @@ int main()
     }
 
     // Deletes what we need anymore
-    glDeleteShader(VertexShader);
-    glDeleteShader(VertexShader);
-    glDeleteProgram(ShaderProgram);
-
     glDeleteBuffers(1, &VBO);
     glDeleteVertexArrays(1, &VAO);
+    glDeleteShader(VertexShader);
+    glDeleteShader(FragmentShader);
+    glDeleteProgram(ShaderProgram);
 
     // Destroying window's process
     glfwDestroyWindow(pWindow);

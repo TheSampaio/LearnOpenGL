@@ -20,7 +20,7 @@ Camera::Camera(float FieldOfView, float MinClipDistance, float MaxClipDistance)
 	m_Projection = glm::mat4(1.0f);
 }
 
-void Camera::ProccessEvents(Shader& ShaderProgram)
+void Camera::Inputs()
 {
 	// === Keyboard Inputs ===
 	// • Forward and backward
@@ -99,7 +99,10 @@ void Camera::ProccessEvents(Shader& ShaderProgram)
 		glfwSetInputMode(Window::GetInstance().GetId(), GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 		m_bFirstClick = true;
 	}
+}
 
+void Camera::Update(Shader& ShaderProgram)
+{
 	// === View Projection Matrix ===
 	m_View = glm::lookAt(m_Position, m_Position + m_Rotation, m_Up);
 	m_Projection = glm::perspective(glm::radians(m_FieldOfView), static_cast<float>(Window::GetInstance().GetSize()[0]) / static_cast<float>(Window::GetInstance().GetSize()[1]), ClipDistance[0], ClipDistance[1]);

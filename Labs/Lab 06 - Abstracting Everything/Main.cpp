@@ -69,27 +69,34 @@ int main()
         Window.ProcessEvents();
         Window.ClearBuffers();
 
-        // Informs OpenGL which shader program and VAO we want to use
-        DefaultProgram->Activate();
-        VertexArray->Bind();
+        {
+            // Informs OpenGL which shader program and VAO we want to use
+            DefaultProgram->Bind();
+            VertexArray->Bind();
 
-        // Set-ups texture's uniform and binds the texture
-        glUniform1i(glGetUniformLocation(DefaultProgram->GetId(), "DiffuseSampler"), 0);
-        GigaChad->Bind();
+            // Set-ups texture's uniform and binds the texture
+            glUniform1i(glGetUniformLocation(DefaultProgram->GetId(), "DiffuseSampler"), 0);
+            GigaChad->Bind();
 
-        // Draw a triangle using the EBO set-up
-        glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(Indices.size()), GL_UNSIGNED_INT, nullptr);
+            // Draw a triangle using the EBO set-up
+            glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(Indices.size()), GL_UNSIGNED_INT, nullptr);
+
+            // Unbind everything binded to avoid bugs
+            GigaChad->Unbind();
+            VertexArray->Unbind();
+            DefaultProgram->Unbind();
+        }
 
         // Swaps window's buffers
         Window.SwapBuffers();
     }
 
     // Deletes what we need anymore
-    delete DefaultProgram;
     delete VertexBuffer;
     delete VertexArray;
     delete ElementBuffer;
     delete GigaChad;
+    delete DefaultProgram;
 
     return 0;
 }

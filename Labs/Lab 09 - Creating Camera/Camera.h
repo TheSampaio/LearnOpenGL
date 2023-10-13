@@ -7,7 +7,8 @@ public:
 	Camera(float FieldOfView = 60.0f, float MinClipDistance = 0.05f, float MaxClipDistance = 100.0f);
 
 	// Process all camera's event
-	void ProccessEvents(class Shader& ShaderProgram);
+	void Inputs();
+	void Update(class Shader& ShaderProgram);
 
 	// Returns the camera's view matrix
 	inline glm::mat4 GetViewMatrix() { return m_View; }

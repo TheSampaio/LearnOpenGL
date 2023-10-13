@@ -78,42 +78,49 @@ int main()
         Window.ProcessEvents();
         Window.ClearBuffers();
 
-        // Informs OpenGL which shader program and VAO we want to use
-        DefaultProgram->Activate();
-        VertexArray->Bind();
+        {
+            // Informs OpenGL which shader program and VAO we want to use
+            DefaultProgram->Bind();
+            VertexArray->Bind();
 
-        // Creates MVP matrix
-        glm::mat4 Model = glm::mat4(1.0f);
-        glm::mat4 View = glm::mat4(1.0f);
-        glm::mat4 Projection = glm::mat4(1.0f);
+            // Creates MVP matrix
+            glm::mat4 Model = glm::mat4(1.0f);
+            glm::mat4 View = glm::mat4(1.0f);
+            glm::mat4 Projection = glm::mat4(1.0f);
 
-        // Set-ups MVP matrix
-        Model = glm::rotate(Model, glm::radians(50.0f * Timer.GetDeltaTime()), glm::vec3{ 0.0f, 1.0f, 0.0f });
-        View = glm::translate(View, glm::vec3{ 0.0f, -0.25f, -1.2f });
-        Projection = glm::perspective(glm::radians(60.0f), static_cast<float>(Window.GetSize()[0]) / static_cast<float>(Window.GetSize()[1]), 0.1f, 100.0f);
+            // Set-ups MVP matrix
+            Model = glm::rotate(Model, glm::radians(50.0f * Timer.GetDeltaTime()), glm::vec3{ 0.0f, 1.0f, 0.0f });
+            View = glm::translate(View, glm::vec3{ 0.0f, -0.25f, -1.2f });
+            Projection = glm::perspective(glm::radians(60.0f), static_cast<float>(Window.GetSize()[0]) / static_cast<float>(Window.GetSize()[1]), 0.1f, 100.0f);
 
-        // Send data from CPU to GPU by using uniforms
-        Renderer.SetUniformMatrix4fv(*DefaultProgram, "Model", Model);
-        Renderer.SetUniformMatrix4fv(*DefaultProgram, "View", View);
-        Renderer.SetUniformMatrix4fv(*DefaultProgram, "Projection", Projection);
+            // Send data from CPU to GPU by using uniforms
+            Renderer.SetUniformMatrix4fv(*DefaultProgram, "Model", Model);
+            Renderer.SetUniformMatrix4fv(*DefaultProgram, "View", View);
+            Renderer.SetUniformMatrix4fv(*DefaultProgram, "Projection", Projection);
 
-        // Set-ups texture's uniform and binds the texture
-        Renderer.SetUniform1i(*DefaultProgram, "DiffuseSampler", 0);
-        Sandbrick->Bind();
+            // Set-ups texture's uniform and binds the texture
+            Renderer.SetUniform1i(*DefaultProgram, "DiffuseSampler", 0);
+            Sandbrick->Bind();
 
-        // Draw call command using indices
-        Renderer.Draw(Indices);
+            // Draw call command using indices
+            Renderer.Draw(Indices);
+
+            // Unbind everything binded to avoid bugs
+            Sandbrick->Unbind();
+            VertexArray->Unbind();
+            DefaultProgram->Unbind();
+        }
 
         // Swaps window's buffers
         Window.SwapBuffers();
     }
 
     // Deletes what we need anymore
-    delete DefaultProgram;
     delete VertexBuffer;
     delete VertexArray;
     delete ElementBuffer;
     delete Sandbrick;
+    delete DefaultProgram;
 
     return 0;
 }
