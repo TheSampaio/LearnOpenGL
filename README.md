@@ -8,11 +8,17 @@
 <body>
     <h1>Learn OpenGL</h1>
         <details><summary>Classes Preview</summary>
-        <h3>1) Creating a Window</h3>
-        In this class we going to learn how to create our first windown using GLFW.
+        <!-- New Preview Bwllow -->
+        <h3>1) Creating Window</h3>
+        <pre>In this lab we are going to learn how to create a window using GLFW.</pre>
         <img src="Resources/Thumbnail/Classes/preview-lab-01.png" width=500 >
+        <!-- New Preview Bwllow -->
+        <h3>2) Creating Triangle</h3>
+        <pre align=>In this lab we are going to learn how to create a simple triangle using a vertex buffer object (VBO).</pre>
+        <img src="Resources/Thumbnail/Classes/preview-lab-02.png" width=500 >
         </details>
-    <h2>Credits</h2>
+        <br>
+    <h1>Credits</h2>
   Excellent ways to learn OpenGL:<br>
   • Reading great content: <a href="https://learnopengl.com/">Learn OpenGL</a><br>
   • Watching great videos: <a href="https://www.youtube.com/@VictorGordan">Victor Gordan</a>, <a href="https://www.youtube.com/@TheCherno">The Cherno</a><br>
