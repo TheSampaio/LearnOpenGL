@@ -31,7 +31,7 @@ Texture::Texture(const char* FilePath, GLenum Format, GLenum Slot, GLenum Filter
     glBindTexture(GL_TEXTURE_2D, m_Id);
 
     // Set-ups the minification and magnification filters
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, Filter);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, Filter);
 
     // Set-ups the texture's wrap behavior
