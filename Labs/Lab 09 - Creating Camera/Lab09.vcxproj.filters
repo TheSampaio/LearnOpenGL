@@ -88,10 +88,10 @@
     <ClCompile Include="Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Lab 00 - Dependencies\Source\glad.c">
+    <ClCompile Include="Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
+    <ClCompile Include="..\Lab 00 - Dependencies\ComputerGraphicsSDK\Windows\OpenGL\Source\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

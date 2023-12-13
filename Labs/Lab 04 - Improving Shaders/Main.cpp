@@ -156,7 +156,7 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT);
         glClearColor(0.2f, 0.2f, 0.4f, 1.0f);
 
-        // Draw call scope (This scope is to organize!)
+        // Draw call scope (This scope is JUST to organize!)
         {
             // Informs OpenGL which shader program and VAO we want to use
             glUseProgram(ShaderProgram);

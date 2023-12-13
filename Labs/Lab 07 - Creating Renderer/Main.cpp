@@ -65,6 +65,7 @@ int main()
         Window.ProcessEvents();
         Window.ClearBuffers();
 
+        // Draw call scope (This scope is JUST to organize!)
         {
             // Informs OpenGL which shader program and VAO we want to use
             DefaultProgram->Bind();

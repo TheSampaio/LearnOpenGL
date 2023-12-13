@@ -15,13 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Lab 00 - Dependencies\Source\glad.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lab 00 - Dependencies\ComputerGraphicsSDK\Windows\OpenGL\Source\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
