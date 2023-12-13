@@ -1,0 +1,3 @@
+[submodule "Labs/Lab 00 - Dependencies/ComputerGraphicsSDK"]
+	path = Labs/Lab 00 - Dependencies/ComputerGraphicsSDK
+	url = https://github.com/thesampaio/ComputerGraphicsSDK
