@@ -140,7 +140,7 @@ int main()
             glBindVertexArray(VAO);
 
             // Draw a triangle using the VBO set-up
-            glDrawArrays(GL_TRIANGLES, 0, vertices.size());
+            glDrawArrays(GL_TRIANGLES, 0, static_cast<GLsizei>(vertices.size()));
 
             // Unbind everything binded to avoid bugs
             glBindVertexArray(0);

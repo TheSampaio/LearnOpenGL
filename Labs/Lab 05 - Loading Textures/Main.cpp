@@ -12,8 +12,8 @@
 int main()
 {
     // Store window's title and size
-    unsigned short Width = 800, Height = 600;
-    const char* Title = "Window | OpenGL";
+    unsigned short width = 800, height = 600;
+    const char* title = "Window | OpenGL";
 
     // Initializes GLFW and log it if failed
     if (!glfwInit())
@@ -31,7 +31,7 @@ int main()
     glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
     // Creates a window (Windowed mode)
-    GLFWwindow* pWindow = glfwCreateWindow(Width, Height, Title, nullptr, nullptr);
+    GLFWwindow* pWindow = glfwCreateWindow(width, height, title, nullptr, nullptr);
 
     // Verifies if the window was created
     if (!pWindow)
@@ -47,12 +47,12 @@ int main()
     gladLoadGL();
 
     // Creates a viewport for the window
-    glViewport(0, 0, Width, Height);
+    glViewport(0, 0, width, height);
 
     // ===== Data Input ================================================================================================== //
     
     // Vertices's array
-    const std::array<GLfloat, 32> Vertices
+    const std::array<GLfloat, 32> vertices
     {
         // === Position        // === Color           // === UV
         -0.8f, -0.8f,  0.0f,    1.0f,  1.0f,  1.0f,    0.0f,  0.0f,
@@ -62,14 +62,14 @@ int main()
     };
 
     // Indices's array
-    const std::array<GLuint, 6> Indices
+    const std::array<GLuint, 6> indices
     {
         0, 1, 2,
         2, 1, 3
     };
 
     // Vertex shader's source code (Temporary)
-    const char* VertexShaderSource = "#version 330 core\n"
+    const char* vertexShaderSource = "#version 330 core\n"
         "layout (location = 0) in vec3 inPosition;\n"
         "layout (location = 1) in vec3 inColor;\n"
         "layout (location = 3) in vec2 inUV;\n"
@@ -83,7 +83,7 @@ int main()
         "}\0";
 
     // Fragment shader's source code (Temporary)
-    const char* FragmentShaderSource = "#version 330 core\n"
+    const char* fragmentShaderSource = "#version 330 core\n"
         "in vec4 outColor;\n"
         "in vec2 outUV;\n"
         "out vec4 gl_Color;\n"
@@ -96,27 +96,27 @@ int main()
     // ===== Shaders and Shader Program ================================================================================== //
 
     // Creates identifies for the vertex shader, fragment shader and shader program
-    GLuint VertexShader = 0, FragmentShader = 0, ShaderProgram = 0;
+    GLuint vertexShader = 0, fragmentShader = 0, shaderProgram = 0;
 
     // Compiles vertex shader
-    VertexShader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(VertexShader, 1, &VertexShaderSource, nullptr);
-    glCompileShader(VertexShader);
+    vertexShader = glCreateShader(GL_VERTEX_SHADER);
+    glShaderSource(vertexShader, 1, &vertexShaderSource, nullptr);
+    glCompileShader(vertexShader);
 
     // Compiles fragment shader
-    FragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(FragmentShader, 1, &FragmentShaderSource, nullptr);
-    glCompileShader(FragmentShader);
+    fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+    glShaderSource(fragmentShader, 1, &fragmentShaderSource, nullptr);
+    glCompileShader(fragmentShader);
 
     // Attaches both shaders to the shader program and links it
-    ShaderProgram = glCreateProgram();
-    glAttachShader(ShaderProgram, VertexShader);
-    glAttachShader(ShaderProgram, FragmentShader);
-    glLinkProgram(ShaderProgram);
+    shaderProgram = glCreateProgram();
+    glAttachShader(shaderProgram, vertexShader);
+    glAttachShader(shaderProgram, fragmentShader);
+    glLinkProgram(shaderProgram);
 
     // Detaches both shaders to the shader program
-    glDetachShader(ShaderProgram, VertexShader);
-    glDetachShader(ShaderProgram, FragmentShader);
+    glDetachShader(shaderProgram, vertexShader);
+    glDetachShader(shaderProgram, fragmentShader);
 
     // ===== Buffers Creation ============================================================================================ //
     
@@ -130,12 +130,12 @@ int main()
     // Generates a VBO and set-ups it
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, Vertices.size() * sizeof(GLfloat), Vertices.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(GLfloat), vertices.data(), GL_STATIC_DRAW);
 
     // Generates a EBO and set-ups it
     glGenBuffers(1, &EBO);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, Indices.size() * sizeof(GLuint), Indices.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(GLuint), indices.data(), GL_STATIC_DRAW);
 
     // Set-ups the VAO's layouts
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), nullptr);
@@ -158,18 +158,18 @@ int main()
     stbi_set_flip_vertically_on_load(true);
 
     // Loads a image from disk
-    int TexWidth = 0, TexHeight = 0, Column = 0;
-    unsigned char* Bytes = stbi_load("../../Resources/Textures/_gigashad-meme.png", &TexWidth, &TexHeight, &Column, 0);
+    int texWidth = 0, texHeight = 0, column = 0;
+    unsigned char* bytes = stbi_load("../../Resources/Textures/_gigashad-meme.png", &texWidth, &texHeight, &column, 0);
 
     // Generates a texture
-    GLuint Texture;
-    glGenTextures(1, &Texture);
+    GLuint texture;
+    glGenTextures(1, &texture);
 
     // Activates the texture slot 0
     glActiveTexture(GL_TEXTURE0);
 
     // Binds a 2D texture
-    glBindTexture(GL_TEXTURE_2D, Texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
 
     // Set-ups the minification and magnification filters
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
@@ -180,13 +180,13 @@ int main()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
     // Set-ups the texture data
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, TexWidth, TexHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, Bytes);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, texWidth, texHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, bytes);
 
     // Generates a mipmap for the 2D texture
     glGenerateMipmap(GL_TEXTURE_2D);
 
     // Free the data loaded from disk
-    stbi_image_free(Bytes);
+    stbi_image_free(bytes);
 
     // Unbinds the 2D texture to avoid bugs
     glBindTexture(GL_TEXTURE_2D, 0);
@@ -206,15 +206,15 @@ int main()
         // Draw call scope (This scope is JUST to organize!)
         {
             // Informs OpenGL which shader program and VAO we want to use
-            glUseProgram(ShaderProgram);
+            glUseProgram(shaderProgram);
             glBindVertexArray(VAO);
 
             // Creates a uniform sampler and binds the generated texture
-            glUniform1i(glGetUniformLocation(ShaderProgram, "DiffuseSampler"), 0);
-            glBindTexture(GL_TEXTURE_2D, Texture);
+            glUniform1i(glGetUniformLocation(shaderProgram, "DiffuseSampler"), 0);
+            glBindTexture(GL_TEXTURE_2D, texture);
 
             // Draw a triangle using the EBO set-up
-            glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(Indices.size()), GL_UNSIGNED_INT, nullptr);
+            glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(indices.size()), GL_UNSIGNED_INT, nullptr);
 
             // Unbind everything binded to avoid bugs
             glBindTexture(GL_TEXTURE_2D, 0);
@@ -230,10 +230,10 @@ int main()
     glDeleteBuffers(1, &VBO);
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &EBO);
-    glDeleteTextures(1, &Texture);
-    glDeleteShader(VertexShader);
-    glDeleteShader(FragmentShader);
-    glDeleteProgram(ShaderProgram);
+    glDeleteTextures(1, &texture);
+    glDeleteShader(vertexShader);
+    glDeleteShader(fragmentShader);
+    glDeleteProgram(shaderProgram);
 
     // Destroying window's process
     glfwDestroyWindow(pWindow);
