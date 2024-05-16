@@ -4,7 +4,7 @@
 class Shader
 {
 public:
-	Shader(const char* VertexShaderFile, const char* FragmentShaderFile);
+	Shader(const char* vertexShaderFile, const char* fragmentShaderFile);
 	~Shader();
 
 	// Binds the shader program
@@ -22,8 +22,8 @@ private:
 		m_VertexShader,
 		m_FragmentShader;
 
-	std::string LoadShader(const char* FilePath);
-	void CompileShader(const char* FilePath, GLuint& ShaderId, GLenum ShaderType);
+	std::string LoadShader(const char* filePath);
+	void CompileShader(const char* filePath, GLuint& shaderId, GLenum shaderType);
 	void CreateShaderProgram(GLuint VextexShader, GLuint FragmentShader);
 };
 

@@ -16,11 +16,11 @@ Camera::Camera(float fieldOfView, float minClipDistance, float maxClipDistance)
 	m_Position = glm::vec3{ 0.0f, 0.5f,  1.0f };
 	m_Rotation = glm::vec3{ 0.0f, 0.0f, -1.0f };
 
-	m_View = glm::mat4(1.0f);
-	m_Projection = glm::mat4(1.0f);
+	m_View = glm::mat4{ 1.0f };
+	m_Projection = glm::mat4{ 1.0f };
 }
 
-void Camera::Inputs()
+void Camera::ProcessInputs()
 {
 	// === Keyboard Inputs ===
 	// • Forward and backward
@@ -101,7 +101,7 @@ void Camera::Inputs()
 	}
 }
 
-void Camera::Update(Shader& shader)
+void Camera::Use(Shader& shader)
 {
 	// === View Projection Matrix ===
 	m_View = glm::lookAt(m_Position, m_Position + m_Rotation, m_Up);

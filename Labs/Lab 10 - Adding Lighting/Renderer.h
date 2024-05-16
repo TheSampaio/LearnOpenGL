@@ -14,20 +14,20 @@ public:
 	static inline Renderer& GetInstance() { static Renderer s_Instance; return s_Instance; }
 
 	// Draw call command
-	inline void Draw(std::vector<GLuint> Indices, GLenum Primitive = GL_TRIANGLES)
-	{ glDrawElements(Primitive, static_cast<GLsizei>(Indices.size()), GL_UNSIGNED_INT, nullptr); }
+	inline void Draw(std::vector<GLuint> indices, GLenum primitive = GL_TRIANGLES)
+	{ glDrawElements(primitive, static_cast<GLsizei>(indices.size()), GL_UNSIGNED_INT, nullptr); }
 
 	// Set-ups an uniform 1 integer
-	inline void SetUniform1i(Shader& ShaderProgram, const GLchar* Name, GLint Integer)
-	{ glUniform1i(glGetUniformLocation(ShaderProgram.GetId(), Name), Integer); }
+	inline void SetUniform1i(Shader& shader, const GLchar* name, GLint value)
+	{ glUniform1i(glGetUniformLocation(shader.GetId(), name), value); }
 
 	// Set-ups an uniform 3 float
-	inline void SetUniform3f(Shader& ShaderProgram, const GLchar* Name, GLfloat Float1, GLfloat Float2, GLfloat Float3)
-	{ glUniform3f(glGetUniformLocation(ShaderProgram.GetId(), Name), Float1, Float2, Float3); }
+	inline void SetUniform3f(Shader& shader, const GLchar* name, GLfloat value1, GLfloat value2, GLfloat value3)
+	{ glUniform3f(glGetUniformLocation(shader.GetId(), name), value1, value2, value3); }
 
 	// Set-ups an uniform matrix 4 float vector
-	inline void SetUniformMatrix4fv(Shader& ShaderProgram, const GLchar* Name, glm::mat4 Matrix)
-	{ glUniformMatrix4fv(glGetUniformLocation(ShaderProgram.GetId(), Name), 1, GL_FALSE, glm::value_ptr(Matrix)); }
+	inline void SetUniformMatrix4fv(Shader& shader, const GLchar* name, glm::mat4 value)
+	{ glUniformMatrix4fv(glGetUniformLocation(shader.GetId(), name), 1, GL_FALSE, glm::value_ptr(value)); }
 
 private:
 	Renderer() {};

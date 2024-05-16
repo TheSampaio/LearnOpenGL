@@ -86,8 +86,8 @@ int main()
             pVertexArray->Bind();
 
             // Process all camera's events and calculates the VP matrix
-            pCamera->Inputs();
-            pCamera->Update(*pShader);
+            pCamera->ProcessInputs();
+            pCamera->Use(*pShader);
 
             // Creates a model matrix
             glm::mat4 model = glm::mat4(1.0f);

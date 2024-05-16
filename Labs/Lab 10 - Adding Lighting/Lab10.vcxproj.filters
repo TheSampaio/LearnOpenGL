@@ -48,10 +48,10 @@
     <ClInclude Include="Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\UdemyOpenGL\UdemyOpenGL\Light.h">
+    <ClInclude Include="Light.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\UdemyOpenGL\UdemyOpenGL\LightDirectional.h">
+    <ClInclude Include="LightDirectional.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -92,10 +92,10 @@
     <ClCompile Include="..\Lab 00 - Dependencies\ComputerGraphicsSDK\Windows\OpenGL\Source\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\UdemyOpenGL\UdemyOpenGL\Light.cpp">
+    <ClCompile Include="Light.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\UdemyOpenGL\UdemyOpenGL\LightDirectional.cpp">
+    <ClCompile Include="LightDirectional.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -8,7 +8,7 @@ public:
 	~VAO();
 
 	// Activates and set-ups the VAO's layouts
-	void AttribPointer(GLuint Layout, GLint Size, GLsizei Stride, GLubyte Offset, GLenum Type = GL_FLOAT, GLboolean Normalized = GL_FALSE);
+	void AttribPointer(GLuint layout, GLint size, GLsizei stride, GLubyte offset, GLenum type = GL_FLOAT, GLboolean normalized = GL_FALSE);
 
 	// Binds the VAO
 	inline void Bind() { glBindVertexArray(m_Id); }
@@ -20,6 +20,5 @@ private:
 	// Attributes
 	GLuint m_Id;
 };
-
 
 #endif

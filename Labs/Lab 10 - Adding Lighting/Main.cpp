@@ -28,27 +28,27 @@ int main()
     // Vertices's array
     const std::vector<GLfloat> vertices
     {
-       // === Positions       // === Colours        // === Normals        // === UVs
-       -0.5f, 0.0f,  0.5f,     0.8f, 0.8f, 0.8f,     0.0f, -1.0f, 0.0f,    0.0f, 0.0f, // Bottom side
-       -0.5f, 0.0f, -0.5f,     0.8f, 0.8f, 0.8f,     0.0f, -1.0f, 0.0f,    0.0f, 5.0f, // Bottom side
-        0.5f, 0.0f, -0.5f,     0.8f, 0.8f, 0.8f,     0.0f, -1.0f, 0.0f,    5.0f, 5.0f, // Bottom side
-        0.5f, 0.0f,  0.5f,     0.8f, 0.8f, 0.8f,     0.0f, -1.0f, 0.0f,    5.0f, 0.0f, // Bottom side
+       // === Positions       // === Colours        // === Normals        // === UVs      // === Faces
+       -0.5f, 0.0f,  0.5f,     0.8f, 0.8f, 0.8f,     0.0f, -1.0f, 0.0f,    0.0f, 0.0f,    // Bottom side
+       -0.5f, 0.0f, -0.5f,     0.8f, 0.8f, 0.8f,     0.0f, -1.0f, 0.0f,    0.0f, 5.0f,    // Bottom side
+        0.5f, 0.0f, -0.5f,     0.8f, 0.8f, 0.8f,     0.0f, -1.0f, 0.0f,    5.0f, 5.0f,    // Bottom side
+        0.5f, 0.0f,  0.5f,     0.8f, 0.8f, 0.8f,     0.0f, -1.0f, 0.0f,    5.0f, 0.0f,    // Bottom side
 
-       -0.5f, 0.0f,  0.5f,     0.8f, 0.8f, 0.8f,    -0.8f, 0.5f,  0.0f,    0.0f, 0.0f, // Left Side
-       -0.5f, 0.0f, -0.5f,     0.8f, 0.8f, 0.8f,    -0.8f, 0.5f,  0.0f,    5.0f, 0.0f, // Left Side
-        0.0f, 0.8f,  0.0f,     1.0f, 1.0f, 1.0f,    -0.8f, 0.5f,  0.0f,    2.5f, 5.0f, // Left Side
+       -0.5f, 0.0f,  0.5f,     0.8f, 0.8f, 0.8f,    -0.8f, 0.5f,  0.0f,    0.0f, 0.0f,    // Left Side
+       -0.5f, 0.0f, -0.5f,     0.8f, 0.8f, 0.8f,    -0.8f, 0.5f,  0.0f,    5.0f, 0.0f,    // Left Side
+        0.0f, 0.8f,  0.0f,     1.0f, 1.0f, 1.0f,    -0.8f, 0.5f,  0.0f,    2.5f, 5.0f,    // Left Side
 
-       -0.5f, 0.0f, -0.5f,     0.8f, 0.8f, 0.8f,     0.0f, 0.5f, -0.8f,    5.0f, 0.0f, // Back side
-        0.5f, 0.0f, -0.5f,     0.8f, 0.8f, 0.8f,     0.0f, 0.5f, -0.8f,    0.0f, 0.0f, // Back side
-        0.0f, 0.8f,  0.0f,     1.0f, 1.0f, 1.0f,     0.0f, 0.5f, -0.8f,    2.5f, 5.0f, // Back side
+       -0.5f, 0.0f, -0.5f,     0.8f, 0.8f, 0.8f,     0.0f, 0.5f, -0.8f,    5.0f, 0.0f,    // Back side
+        0.5f, 0.0f, -0.5f,     0.8f, 0.8f, 0.8f,     0.0f, 0.5f, -0.8f,    0.0f, 0.0f,    // Back side
+        0.0f, 0.8f,  0.0f,     1.0f, 1.0f, 1.0f,     0.0f, 0.5f, -0.8f,    2.5f, 5.0f,    // Back side
 
-        0.5f, 0.0f, -0.5f,     0.8f, 0.8f, 0.8f,     0.8f, 0.5f,  0.0f,    0.0f, 0.0f, // Right side
-        0.5f, 0.0f,  0.5f,     0.8f, 0.8f, 0.8f,     0.8f, 0.5f,  0.0f,    5.0f, 0.0f, // Right side
-        0.0f, 0.8f,  0.0f,     1.0f, 1.0f, 1.0f,     0.8f, 0.5f,  0.0f,    2.5f, 5.0f, // Right side
+        0.5f, 0.0f, -0.5f,     0.8f, 0.8f, 0.8f,     0.8f, 0.5f,  0.0f,    0.0f, 0.0f,    // Right side
+        0.5f, 0.0f,  0.5f,     0.8f, 0.8f, 0.8f,     0.8f, 0.5f,  0.0f,    5.0f, 0.0f,    // Right side
+        0.0f, 0.8f,  0.0f,     1.0f, 1.0f, 1.0f,     0.8f, 0.5f,  0.0f,    2.5f, 5.0f,    // Right side
 
-        0.5f, 0.0f,  0.5f,     0.8f, 0.8f, 0.8f,     0.0f, 0.5f,  0.8f,    5.0f, 0.0f, // Front side
-       -0.5f, 0.0f,  0.5f,     0.8f, 0.8f, 0.8f,     0.0f, 0.5f,  0.8f,    0.0f, 0.0f, // Front side
-        0.0f, 0.8f,  0.0f,     1.0f, 1.0f, 1.0f,     0.0f, 0.5f,  0.8f,    2.5f, 5.0f  // Front side
+        0.5f, 0.0f,  0.5f,     0.8f, 0.8f, 0.8f,     0.0f, 0.5f,  0.8f,    5.0f, 0.0f,    // Front side
+       -0.5f, 0.0f,  0.5f,     0.8f, 0.8f, 0.8f,     0.0f, 0.5f,  0.8f,    0.0f, 0.0f,    // Front side
+        0.0f, 0.8f,  0.0f,     1.0f, 1.0f, 1.0f,     0.0f, 0.5f,  0.8f,    2.5f, 5.0f     // Front side
     };
 
     // Indices's dynamic array
@@ -66,10 +66,7 @@ int main()
     Shader* pShader = new Shader("DefaultVert.glsl", "DefaultFrag.glsl");
 
     // Creates all light sources
-    LightDirectional* pSun = new LightDirectional(*pShader,
-        glm::vec3{ 0.5f, 1.0f, 0.8f },
-        glm::vec3{ 0.45f }
-    );
+    LightDirectional* pSun = new LightDirectional(glm::vec3{ 0.5f, 1.0f, 0.8f }, glm::vec3{ 0.45f });
 
     // Creates all buffer objects
     VAO* pVertexArray = new VAO();
@@ -105,16 +102,16 @@ int main()
 
         // Draw call scope (This scope is JUST to organize!)
         {
-            // Uses the light sources
-            pSun->Use();
-
             // Informs OpenGL which shader program and VAO we want to use
             pShader->Bind();
             pVertexArray->Bind();
 
             // Process all camera's events and calculates the VP matrix
-            pCamera->Inputs();
-            pCamera->Update(*pShader);
+            pCamera->ProcessInputs();
+            pCamera->Use(*pShader);
+
+            // Binds the light sources
+            pSun->Use(*pShader);
 
             // Creates a model matrix
             glm::mat4 model = glm::mat4(1.0f);

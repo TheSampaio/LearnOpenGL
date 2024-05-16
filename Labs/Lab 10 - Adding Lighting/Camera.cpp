@@ -5,22 +5,22 @@
 #include "Renderer.h"
 #include "Timer.h"
 
-Camera::Camera(float FieldOfView, float MinClipDistance, float MaxClipDistance)
+Camera::Camera(float fieldOfView, float minClipDistance, float maxClipDistance)
 	: m_bFirstClick(true)
 {
-	m_ClipDistance = { MinClipDistance, MaxClipDistance };
+	m_ClipDistance = { minClipDistance, maxClipDistance };
 	m_Sensitivity = 100.0f;
 	m_Speed = 0.0f;
-	m_FieldOfView = FieldOfView;
+	m_FieldOfView = fieldOfView;
 
 	m_Position = glm::vec3{ 0.0f, 0.5f,  1.0f };
 	m_Rotation = glm::vec3{ 0.0f, 0.0f, -1.0f };
 
-	m_View = glm::mat4(1.0f);
-	m_Projection = glm::mat4(1.0f);
+	m_View = glm::mat4{ 1.0f };
+	m_Projection = glm::mat4{ 1.0f };
 }
 
-void Camera::Inputs()
+void Camera::ProcessInputs()
 {
 	// === Keyboard Inputs ===
 	// • Forward and backward
@@ -101,14 +101,14 @@ void Camera::Inputs()
 	}
 }
 
-void Camera::Update(Shader& ShaderProgram)
+void Camera::Use(Shader& shader)
 {
 	// === View Projection Matrix ===
 	m_View = glm::lookAt(m_Position, m_Position + m_Rotation, m_Up);
 	m_Projection = glm::perspective(glm::radians(m_FieldOfView), static_cast<float>(Window::GetInstance().GetSize()[0]) / static_cast<float>(Window::GetInstance().GetSize()[1]), m_ClipDistance[0], m_ClipDistance[1]);
 
 	// Sends the VP matrix to the GPU
-	Renderer::GetInstance().SetUniformMatrix4fv(ShaderProgram, "uView", m_View);
-	Renderer::GetInstance().SetUniformMatrix4fv(ShaderProgram, "uProjection", m_Projection);
-	Renderer::GetInstance().SetUniform3f(ShaderProgram, "uViewPositon", m_Position.x, m_Position.y, m_Position.z);
+	Renderer::GetInstance().SetUniformMatrix4fv(shader, "uView", m_View);
+	Renderer::GetInstance().SetUniformMatrix4fv(shader, "uProjection", m_Projection);
+	Renderer::GetInstance().SetUniform3f(shader, "uViewPositon", m_Position.x, m_Position.y, m_Position.z);
 }

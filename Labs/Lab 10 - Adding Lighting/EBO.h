@@ -4,7 +4,7 @@
 class EBO
 {
 public:
-	EBO(std::vector<GLuint> Indices);
+	EBO(std::vector<GLuint> indices);
 	~EBO();
 
 	// Binds the EBO
