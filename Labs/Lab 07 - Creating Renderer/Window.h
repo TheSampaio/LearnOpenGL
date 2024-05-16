@@ -5,7 +5,7 @@ class Window
 {
 public:
 	// Returns a reference for the window
-	static inline Window& GetInstance() { static Window m_Instance; return m_Instance; }
+	static inline Window& GetInstance() { static Window s_Instance; return s_Instance; }
 
 	// Creates the window
 	bool Create();
@@ -26,13 +26,13 @@ public:
 	inline GLFWwindow*& GetId() { return m_Id; }
 
 	// Returns monitor's work area's size
-	inline std::array<int, 2> GetScreen() { return m_Screen; }
+	inline std::array<int, 2> GetScreen() const { return m_Screen; }
 
 	// Returns window's size
-	inline std::array<unsigned short, 2> GetSize() { return m_Size; }
+	inline std::array<unsigned short, 2> GetSize() const { return m_Size; }
 
 	// Returns window's center
-	inline std::array<unsigned short, 2> GetCenter() { return m_Center; }
+	inline std::array<unsigned short, 2> GetCenter() const { return m_Center; }
 
 	// Returns window's title
 	inline std::string GetTitle() { return m_Title; }

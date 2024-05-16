@@ -11,7 +11,7 @@ class Renderer
 {
 public:
 	// Returns a reference for the renderer
-	static inline Renderer& GetInstance() { static Renderer m_Instance; return m_Instance; }
+	static inline Renderer& GetInstance() { static Renderer s_Instance; return s_Instance; }
 
 	// Draw call command
 	inline void Draw(std::vector<GLuint> Indices, GLenum Primitive = GL_TRIANGLES) { glDrawElements(Primitive, static_cast<GLsizei>(Indices.size()), GL_UNSIGNED_INT, nullptr); }

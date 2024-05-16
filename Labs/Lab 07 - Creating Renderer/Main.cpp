@@ -8,20 +8,20 @@
 int main()
 {
     // Gets the window's and renderer's static instance references
-    Window& Window = Window::GetInstance();
-    Renderer& Renderer = Renderer::GetInstance();
+    Window& window = Window::GetInstance();
+    Renderer& renderer = Renderer::GetInstance();
 
     // Set-ups the window
-    Window.SetSize(800, 600);
-    Window.SetTitle("Window | OpenGL");
-    Window.SetVerticalSynchronization(true);
-    Window.SetBackgroundColour(0.2f, 0.2f, 0.4f);
+    window.SetSize(800, 600);
+    window.SetTitle("Window | OpenGL");
+    window.SetVerticalSynchronization(true);
+    window.SetBackgroundColour(0.2f, 0.2f, 0.4f);
 
     // Creates the window
-    Window.Create();
+    window.Create();
 
     // Vertices's array
-    const std::vector<GLfloat> Vertices
+    const std::vector<GLfloat> vertices
     {
         // === Positions       // === Colours         // === UVs      // === Indices
         -0.8f, -0.8f,  0.0f,    1.0f,  1.0f,  1.0f,    0.0f, 0.0f,    //  0
@@ -31,69 +31,69 @@ int main()
     };
 
     // Indices's dynamic array
-    const std::vector<GLuint> Indices
+    const std::vector<GLuint> indices
     {
         0, 1, 2,
         2, 1, 3
     };
 
     // Creates a shader program using files for the vertex and fragment shaders
-    Shader* DefaultProgram = new Shader("DefaultVert.glsl", "DefaultFrag.glsl");
+    Shader* pShader = new Shader("DefaultVert.glsl", "DefaultFrag.glsl");
 
     // Creates all buffer objects
-    VAO* VertexArray = new VAO();
-    VBO* VertexBuffer = new VBO(Vertices);
-    EBO* ElementBuffer = new EBO(Indices);
+    VAO* pVertexArray = new VAO();
+    VBO* pVertexBuffer = new VBO(vertices);
+    EBO* pElementBuffer = new EBO(indices);
 
     // Loads and creates a texture
-    Texture* GigaChad = new Texture("../../Resources/Textures/_gigashad-meme.png");
+    Texture* pGigaChadTexture = new Texture("../../Resources/Textures/_gigashad-meme.png");
 
     // Set-ups VAO's layouts
-    VertexArray->AttribPointer(0, 3, 8 * sizeof(GLfloat), 0);                   // Position
-    VertexArray->AttribPointer(1, 3, 8 * sizeof(GLfloat), 3 * sizeof(GLfloat)); // Colour
-    VertexArray->AttribPointer(3, 2, 8 * sizeof(GLfloat), 6 * sizeof(GLfloat)); // UV
+    pVertexArray->AttribPointer(0, 3, 8 * sizeof(GLfloat), 0);                   // Position
+    pVertexArray->AttribPointer(1, 3, 8 * sizeof(GLfloat), 3 * sizeof(GLfloat)); // Colour
+    pVertexArray->AttribPointer(3, 2, 8 * sizeof(GLfloat), 6 * sizeof(GLfloat)); // UV
 
     // Unbinds all buffers to avoid bugs
-    VertexBuffer->Unbind();
-    VertexArray->Unbind();
-    ElementBuffer->Unbind();
+    pVertexBuffer->Unbind();
+    pVertexArray->Unbind();
+    pElementBuffer->Unbind();
 
     // Main loop (Game loop)
-    while (!Window.Close())
+    while (!window.Close())
     {
         // Process all window's events and clear all buffers
-        Window.ProcessEvents();
-        Window.ClearBuffers();
+        window.ProcessEvents();
+        window.ClearBuffers();
 
         // Draw call scope (This scope is JUST to organize!)
         {
             // Informs OpenGL which shader program and VAO we want to use
-            DefaultProgram->Bind();
-            VertexArray->Bind();
+            pShader->Bind();
+            pVertexArray->Bind();
 
             // Set-ups texture's uniform and binds the texture
-            Renderer.SetUniform1i(*DefaultProgram, "DiffuseSampler", 0);
-            GigaChad->Bind();
+            renderer.SetUniform1i(*pShader, "DiffuseSampler", 0);
+            pGigaChadTexture->Bind();
 
             // Draw call command using indices
-            Renderer.Draw(Indices);
+            renderer.Draw(indices);
 
             // Swaps window's buffers
-            Window.SwapBuffers();
+            window.SwapBuffers();
 
             // Unbind everything binded to avoid bugs
-            GigaChad->Unbind();
-            VertexArray->Unbind();
-            DefaultProgram->Unbind();
+            pGigaChadTexture->Unbind();
+            pVertexArray->Unbind();
+            pShader->Unbind();
         }
     }
 
     // Deletes what we need anymore
-    delete VertexBuffer;
-    delete VertexArray;
-    delete ElementBuffer;
-    delete GigaChad;
-    delete DefaultProgram;
+    delete pVertexBuffer;
+    delete pVertexArray;
+    delete pElementBuffer;
+    delete pGigaChadTexture;
+    delete pShader;
 
     return 0;
 }
