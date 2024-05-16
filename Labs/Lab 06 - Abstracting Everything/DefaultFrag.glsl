@@ -2,17 +2,17 @@
 #version 330 core
 
 // Input variables
-in vec4 outColour;
-in vec2 outUV;
+in vec4 vColour;
+in vec2 vUV;
 
 // Output variables
-out vec4 gl_Color;
+out vec4 oFragment;
 
 // Uniforms
-uniform sampler2D DiffuseSampler;
+uniform sampler2D uDiffuseSampler;
 
 void main()
 {
     // Final fragment colour
-    gl_Color = texture(DiffuseSampler, outUV) * outColour;
+    oFragment = texture(uDiffuseSampler, vUV) * vColour;
 };
