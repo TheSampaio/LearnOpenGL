@@ -15,4 +15,4 @@ void main()
 {
     // Final fragment colour
     oFragment = texture(uDiffuseSampler, vUV) * vColour;
-};
+}

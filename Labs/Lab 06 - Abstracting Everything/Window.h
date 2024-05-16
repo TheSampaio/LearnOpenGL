@@ -35,19 +35,19 @@ public:
 	inline std::array<unsigned short, 2> GetCenter() const { return m_Center; }
 
 	// Returns window's title
-	inline std::string GetTitle() { return m_Title; }
+	inline std::string GetTitle() const { return m_Title; }
 
 	// Sets window's title
-	inline void SetTitle(std::string Title) { m_Title = Title; }
+	inline void SetTitle(const std::string& title) { m_Title = title; }
 
 	// Sets window's size
-	inline void SetSize(unsigned short Width, unsigned short Height) { m_Size = {Width, Height}; }
+	inline void SetSize(unsigned short width, unsigned short height) { m_Size = {width, height}; }
 
 	// Sets window's background colour
-	inline void SetBackgroundColour(GLfloat Red, GLfloat Green, GLfloat Blue) { m_BackgroundColour = {Red, Green, Blue}; }
+	inline void SetBackgroundColour(GLfloat red, GLfloat green, GLfloat blue) { m_BackgroundColour = {red, green, blue}; }
 
 	// Sets window's vertical synchronization (V-Sync)
-	inline void SetVerticalSynchronization(bool Enable) { m_Synchronization = Enable; }
+	inline void SetVerticalSynchronization(bool enable) { m_Synchronization = enable; }
 
 private:
 	Window();

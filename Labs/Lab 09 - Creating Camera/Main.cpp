@@ -10,21 +10,21 @@
 int main()
 {
     // Gets all the static instance references
-    Window& Window = Window::GetInstance();
-    Renderer& Renderer = Renderer::GetInstance();
-    Timer& Timer = Timer::GetInstance();
+    Window& window = Window::GetInstance();
+    Renderer& renderer = Renderer::GetInstance();
+    Timer& timer = Timer::GetInstance();
 
     // Set-ups the window
-    Window.SetSize(1360, 768);
-    Window.SetTitle("Window | OpenGL");
-    Window.SetVerticalSynchronization(false);
-    Window.SetBackgroundColour(0.2f, 0.2f, 0.4f);
+    window.SetSize(1360, 768);
+    window.SetTitle("Window | OpenGL");
+    window.SetVerticalSynchronization(false);
+    window.SetBackgroundColour(0.2f, 0.2f, 0.4f);
 
     // Creates the window
-    Window.Create();
+    window.Create();
 
     // Vertices's array
-    const std::vector<GLfloat> Vertices
+    const std::vector<GLfloat> vertices
     {
         // === Positions       // === Colours         // === UVs      // === Indices
         -0.5f,  0.0f,  0.5f,    1.0f,  1.0f,  1.0f,    0.0f, 0.0f,    //  0
@@ -35,7 +35,7 @@ int main()
     };
 
     // Indices's dynamic array
-    const std::vector<GLuint> Indices
+    const std::vector<GLuint> indices
     {
        0, 1, 2,
        0, 2, 3,
@@ -46,84 +46,84 @@ int main()
     };
 
     // Creates a shader program using files for the vertex and fragment shaders
-    Shader* DefaultProgram = new Shader("DefaultVert.glsl", "DefaultFrag.glsl");
+    Shader* pShader = new Shader("DefaultVert.glsl", "DefaultFrag.glsl");
 
     // Creates all buffer objects
-    VAO* VertexArray = new VAO();
-    VBO* VertexBuffer = new VBO(Vertices);
-    EBO* ElementBuffer = new EBO(Indices);
+    VAO* pVertexArray = new VAO();
+    VBO* pVertexBuffer = new VBO(vertices);
+    EBO* pElementBuffer = new EBO(indices);
 
     // Loads and creates a texture
-    Texture* Sandbrick = new Texture("../../Resources/Textures/diffuse-sandbrick-01.png");
+    Texture* pSandbrickTexture = new Texture("../../Resources/Textures/diffuse-sandbrick-01.png");
 
     // Set-ups VAO's layouts
-    VertexArray->AttribPointer(0, 3, 8 * sizeof(GLfloat), 0);                   // Position
-    VertexArray->AttribPointer(1, 3, 8 * sizeof(GLfloat), 3 * sizeof(GLfloat)); // Colour
-    VertexArray->AttribPointer(3, 2, 8 * sizeof(GLfloat), 6 * sizeof(GLfloat)); // UV
+    pVertexArray->AttribPointer(0, 3, 8 * sizeof(GLfloat), 0);                   // Position
+    pVertexArray->AttribPointer(1, 3, 8 * sizeof(GLfloat), 3 * sizeof(GLfloat)); // Colour
+    pVertexArray->AttribPointer(3, 2, 8 * sizeof(GLfloat), 6 * sizeof(GLfloat)); // UV
 
     // Unbinds all buffers to avoid bugs
-    VertexBuffer->Unbind();
-    VertexArray->Unbind();
-    ElementBuffer->Unbind();
+    pVertexBuffer->Unbind();
+    pVertexArray->Unbind();
+    pElementBuffer->Unbind();
 
     // Creates a ghost camera
-    Camera* DefaultCamera = new Camera(80.0f);
+    Camera* pCamera = new Camera(80.0f);
 
     // Main loop (Game loop)
-    while (!Window.Close())
+    while (!window.Close())
     {
         // Updates timer's amount and delta times
-        Timer.Update();
+        timer.Update();
 
         // Process all window's events and clear all buffers
-        Window.ProcessEvents();
-        Window.ClearBuffers();
+        window.ProcessEvents();
+        window.ClearBuffers();
 
         // Draw call scope (This scope is JUST to organize!)
         {
             // Informs OpenGL which shader program and VAO we want to use
-            DefaultProgram->Bind();
-            VertexArray->Bind();
+            pShader->Bind();
+            pVertexArray->Bind();
 
             // Process all camera's events and calculates the VP matrix
-            DefaultCamera->Inputs();
-            DefaultCamera->Update(*DefaultProgram);
+            pCamera->Inputs();
+            pCamera->Update(*pShader);
 
             // Creates a model matrix
-            glm::mat4 Model = glm::mat4(1.0f);
+            glm::mat4 model = glm::mat4(1.0f);
 
             // Set-ups the model matrix
-            Model = glm::translate(Model, glm::vec3{0.0f, 1.0f, 0.0f} *  0.25f);
-            Model = glm::translate(Model, glm::vec3{0.0f, 0.0f, 1.0f} * -0.15f);
-            Model = glm::rotate(Model, glm::radians(50.0f * Timer.GetAmountTime()), glm::vec3{ 0.0f, 1.0f, 0.0f });
+            model = glm::translate(model, glm::vec3{ 0.0f, 1.0f, 0.0f } *0.25f);
+            model = glm::translate(model, glm::vec3{ 0.0f, 0.0f, 1.0f } *-0.15f);
+            model = glm::rotate(model, glm::radians(50.0f * timer.GetAmountTime()), glm::vec3{ 0.0f, 1.0f, 0.0f });
 
             // Send data from CPU to GPU by using uniforms
-            Renderer.SetUniformMatrix4fv(*DefaultProgram, "Model", Model);
+            renderer.SetUniformMatrix4fv(*pShader, "uModel", model);
 
             // Set-ups texture's uniform and binds the texture
-            Renderer.SetUniform1i(*DefaultProgram, "DiffuseSampler", 0);
-            Sandbrick->Bind();
+            renderer.SetUniform1i(*pShader, "uDiffuseSampler", 0);
+            pSandbrickTexture->Bind();
 
             // Draw call command using indices
-            Renderer.Draw(Indices);
+            renderer.Draw(indices);
 
             // Unbind everything binded to avoid bugs
-            Sandbrick->Unbind();
-            VertexArray->Unbind();
-            DefaultProgram->Unbind();
+            pSandbrickTexture->Unbind();
+            pVertexArray->Unbind();
+            pShader->Unbind();
         }
 
         // Swaps window's buffers
-        Window.SwapBuffers();
+        window.SwapBuffers();
     }
 
     // Deletes what we need anymore
-    delete DefaultCamera;
-    delete VertexBuffer;
-    delete VertexArray;
-    delete ElementBuffer;
-    delete Sandbrick;
-    delete DefaultProgram;
+    delete pCamera;
+    delete pVertexBuffer;
+    delete pVertexArray;
+    delete pElementBuffer;
+    delete pSandbrickTexture;
+    delete pShader;
 
     return 0;
 }

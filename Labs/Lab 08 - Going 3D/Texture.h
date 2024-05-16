@@ -4,7 +4,7 @@
 class Texture
 {
 public:
-	Texture(const char* FilePath, GLenum Format = GL_RGBA, GLenum Slot = GL_TEXTURE0, GLenum Filter = GL_LINEAR);
+	Texture(const char* filePath, GLenum format = GL_RGBA, GLenum slot = GL_TEXTURE0, GLenum filter = GL_LINEAR);
 	~Texture();
 
 	// Binds the texture
@@ -14,10 +14,10 @@ public:
 	inline void Unbind() { glBindTexture(GL_TEXTURE_2D, 0); }
 
 	// Returns the texture's ID
-	inline GLuint GetId() { return m_Id; }
+	inline GLuint GetId() const { return m_Id; }
 
 	// Returns the texture's size
-	inline std::array<int, 2> GetSize() { return m_Size; }
+	inline std::array<int, 2> GetSize() const { return m_Size; }
 
 private:
 	// Attributes

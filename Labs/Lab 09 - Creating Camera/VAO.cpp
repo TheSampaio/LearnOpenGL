@@ -14,8 +14,8 @@ VAO::~VAO()
 	glDeleteVertexArrays(1, &m_Id);
 }
 
-void VAO::AttribPointer(GLuint Layout, GLint Size, GLsizei Stride, GLubyte Offset, GLenum Type, GLboolean Normalized)
+void VAO::AttribPointer(GLuint layout, GLint size, GLsizei stride, GLubyte offset, GLenum type, GLboolean normalized)
 {
-	glVertexAttribPointer(Layout, Size, Type, Normalized, Stride, reinterpret_cast<void*>(static_cast<long long>(Offset)));
-	glEnableVertexAttribArray(Layout);
+	glVertexAttribPointer(layout, size, type, normalized, stride, reinterpret_cast<void*>(static_cast<long long>(offset)));
+	glEnableVertexAttribArray(layout);
 }

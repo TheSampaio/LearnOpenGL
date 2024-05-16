@@ -5,16 +5,16 @@ class Timer
 {
 public:
 	// Returns a reference for the timer
-	static inline Timer& GetInstance() { static Timer m_Instance; return m_Instance; }
+	static inline Timer& GetInstance() { static Timer s_Instance; return s_Instance; }
 
 	// Updates the timer and updates the delta time
 	void Update();
 
 	// Returns the amount time
-	inline float GetAmountTime() { return m_Amount; }
+	inline float GetAmountTime() const { return m_Amount; }
 
 	// Returns the delta time
-	inline float GetDeltaTime() { return m_Delta; }
+	inline float GetDeltaTime() const { return m_Delta; }
 
 private:
 	Timer();

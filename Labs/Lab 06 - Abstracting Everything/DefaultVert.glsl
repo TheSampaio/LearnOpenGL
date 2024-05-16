@@ -18,4 +18,4 @@ void main()
 
     // Final vertex position
     gl_Position = vec4(iPosition, 1.0);
-};
+}

@@ -7,7 +7,7 @@ class Debug
 {
 public:
 	// Main methods
-	static inline void Log(const char* Text, bool bPause = false) { Get().ILog(Text, bPause); }
+	static inline void Log(const char* text, bool bPause = false) { Get().ILog(text, bPause); }
 
 private:
 	// Class's contructor and static reference
@@ -19,7 +19,7 @@ private:
 	Debug operator=(const Debug&) = delete;
 
 	// Internal methods
-	static inline void ILog(const char* Text, bool bPause = false) { std::printf(Text); if (bPause) { char pause = std::getchar(); } }
+	static inline void ILog(const char* text, bool bPause = false) { std::printf(text); if (bPause) { char pause = std::getchar(); } }
 };
 
 #endif // !LEARNOPENGL_DEBUG_H

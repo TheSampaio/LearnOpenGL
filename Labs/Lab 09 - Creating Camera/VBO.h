@@ -4,7 +4,7 @@
 class VBO
 {
 public:
-	VBO(std::vector<GLfloat> Vertices);
+	VBO(std::vector<GLfloat> vertices);
 	~VBO();
 
 	// Binds the VBO

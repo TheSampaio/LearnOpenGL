@@ -5,13 +5,13 @@
 #include "Renderer.h"
 #include "Timer.h"
 
-Camera::Camera(float FieldOfView, float MinClipDistance, float MaxClipDistance)
+Camera::Camera(float fieldOfView, float minClipDistance, float maxClipDistance)
 	: m_bFirstClick(true)
 {
-	ClipDistance = { MinClipDistance, MaxClipDistance };
+	m_ClipDistance = { minClipDistance, maxClipDistance };
 	m_Sensitivity = 100.0f;
 	m_Speed = 0.0f;
-	m_FieldOfView = FieldOfView;
+	m_FieldOfView = fieldOfView;
 
 	m_Position = glm::vec3{ 0.0f, 0.5f,  1.0f };
 	m_Rotation = glm::vec3{ 0.0f, 0.0f, -1.0f };
@@ -70,24 +70,24 @@ void Camera::Inputs()
 		}
 
 		// Stores the coordinates of the cursor
-		double MouseX = 0.0;
-		double MouseY = 0.0;
+		double mouseX = 0.0;
+		double mouseY = 0.0;
 
 		// Fetches the coordinates of the cursor
-		glfwGetCursorPos(Window::GetInstance().GetId(), &MouseX, &MouseY);
+		glfwGetCursorPos(Window::GetInstance().GetId(), &mouseX, &mouseY);
 
 		// Calculates camera's pitch and yaw
-		float Pitch = m_Sensitivity * static_cast<float>(MouseY - static_cast<double>(Window::GetInstance().GetSize()[1] / 2)) / Window::GetInstance().GetSize()[1];
-		float Yaw =   m_Sensitivity * static_cast<float>(MouseX - static_cast<double>(Window::GetInstance().GetSize()[0] / 2)) / Window::GetInstance().GetSize()[0];
+		float pitch = m_Sensitivity * static_cast<float>(mouseY - static_cast<double>(Window::GetInstance().GetSize()[1] / 2)) / Window::GetInstance().GetSize()[1];
+		float yaw =   m_Sensitivity * static_cast<float>(mouseX - static_cast<double>(Window::GetInstance().GetSize()[0] / 2)) / Window::GetInstance().GetSize()[0];
 
 		// Calculates the new camera's orientaion (Bug fix)
-		glm::vec3 NewOrientation = glm::rotate(m_Rotation, glm::radians(-Pitch), glm::normalize(glm::cross(m_Rotation, m_Up)));
+		glm::vec3 newOrientation = glm::rotate(m_Rotation, glm::radians(-pitch), glm::normalize(glm::cross(m_Rotation, m_Up)));
 
-		if (abs(glm::angle(NewOrientation, m_Up) - glm::radians(90.0f)) <= glm::radians(85.0f))
-			m_Rotation = NewOrientation;
+		if (abs(glm::angle(newOrientation, m_Up) - glm::radians(90.0f)) <= glm::radians(85.0f))
+			m_Rotation = newOrientation;
 
 		// Rotates the camera left and right
-		m_Rotation = glm::rotate(m_Rotation, glm::radians(-Yaw), m_Up);
+		m_Rotation = glm::rotate(m_Rotation, glm::radians(-yaw), m_Up);
 
 		// Sets mouse cursor to the middle of the screen
 		glfwSetCursorPos(Window::GetInstance().GetId(), static_cast<double>(Window::GetInstance().GetSize()[0] / 2), static_cast<double>(Window::GetInstance().GetSize()[1] / 2));
@@ -101,13 +101,13 @@ void Camera::Inputs()
 	}
 }
 
-void Camera::Update(Shader& ShaderProgram)
+void Camera::Update(Shader& shader)
 {
 	// === View Projection Matrix ===
 	m_View = glm::lookAt(m_Position, m_Position + m_Rotation, m_Up);
-	m_Projection = glm::perspective(glm::radians(m_FieldOfView), static_cast<float>(Window::GetInstance().GetSize()[0]) / static_cast<float>(Window::GetInstance().GetSize()[1]), ClipDistance[0], ClipDistance[1]);
+	m_Projection = glm::perspective(glm::radians(m_FieldOfView), static_cast<float>(Window::GetInstance().GetSize()[0]) / static_cast<float>(Window::GetInstance().GetSize()[1]), m_ClipDistance[0], m_ClipDistance[1]);
 
 	// Sends the VP matrix to the GPU
-	Renderer::GetInstance().SetUniformMatrix4fv(ShaderProgram, "View", m_View);
-	Renderer::GetInstance().SetUniformMatrix4fv(ShaderProgram, "Projection", m_Projection);
+	Renderer::GetInstance().SetUniformMatrix4fv(shader, "uView", m_View);
+	Renderer::GetInstance().SetUniformMatrix4fv(shader, "uProjection", m_Projection);
 }

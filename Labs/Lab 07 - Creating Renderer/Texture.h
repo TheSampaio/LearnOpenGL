@@ -4,7 +4,7 @@
 class Texture
 {
 public:
-	Texture(const char* FilePath, GLenum Slot = GL_TEXTURE0, GLenum Format = GL_RGBA, GLenum Filter = GL_LINEAR);
+	Texture(const char* filePath, GLenum slot = GL_TEXTURE0, GLenum format = GL_RGBA, GLenum filter = GL_LINEAR);
 	~Texture();
 
 	// Binds the texture
