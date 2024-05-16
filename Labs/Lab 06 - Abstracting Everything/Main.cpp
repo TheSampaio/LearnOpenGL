@@ -1,7 +1,7 @@
 // Pre-compiled headers
 #include "PCH.h"
 
-// Project includes
+// Core
 #include "Window.h"
 
 #include "Texture.h"

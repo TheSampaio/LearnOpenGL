@@ -1,7 +1,7 @@
 // Pre-compiled headers
 #include "PCH.h"
 
-// Project includes
+// Core
 #include "Renderer.h"
 #include "Window.h"
 #include "Camera.h"
