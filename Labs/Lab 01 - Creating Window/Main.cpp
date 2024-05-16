@@ -6,8 +6,8 @@
 
 int main()
 {
-    unsigned short Width = 800, Height = 600;
-    const char* Title = "Window | OpenGL";
+    unsigned short width = 800, height = 600;
+    const char* title = "Window | OpenGL";
 
     // Initializes GLFW and log it if failed
     if (!glfwInit())
@@ -25,7 +25,7 @@ int main()
     glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
     // Creates a window (Windowed mode)
-    GLFWwindow* pWindow = glfwCreateWindow(Width, Height, Title, nullptr, nullptr);
+    GLFWwindow* pWindow = glfwCreateWindow(width, height, title, nullptr, nullptr);
 
     // Verifies if the window was created
     if (!pWindow)
@@ -41,7 +41,7 @@ int main()
     gladLoadGL();
 
     // Creates a viewport for the window
-    glViewport(0, 0, Width, Height);
+    glViewport(0, 0, width, height);
 
     // Main loop (Game loop)
     while (!glfwWindowShouldClose(pWindow))
