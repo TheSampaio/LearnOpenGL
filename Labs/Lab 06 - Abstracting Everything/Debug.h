@@ -10,14 +10,14 @@ public:
 private:
 	// Class's contructor and static reference
 	Debug() {};
-	static inline Debug& GetInstance() { static Debug m_Instance; return m_Instance; }
+	static inline Debug& GetInstance() { static Debug s_Instance; return s_Instance; }
 
 	// Delete copy constructor and assigment operator
 	Debug(const Debug&) = delete;
 	Debug operator=(const Debug&) = delete;
 
 	// Logs with text on the console
-	static inline void ILog(const char* Text, bool bPause = false) { std::printf(Text); if (bPause) { char Pause = std::getchar(); } }
+	static inline void ILog(const char* Text, bool bPause = false) { std::printf(Text); if (bPause) { char pause = std::getchar(); } }
 };
 
 #endif // !LEARNOPENGL_DEBUG_H
