@@ -51,7 +51,7 @@ int main()
 
     // ===== Data Input ================================================================================================== //
     
-    // Vertices's array
+    // Vertices's dynamic array
     const std::array<GLfloat, 32> vertices
     {
         // === Position        // === Color           // === UV

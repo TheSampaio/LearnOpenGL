@@ -159,8 +159,8 @@
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="DefaultFrag.glsl" />
-    <None Include="DefaultVert.glsl" />
+    <None Include="Default.frag" />
+    <None Include="Default.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Lab 00 - Dependencies\ComputerGraphicsSDK\Windows\OpenGL\Source\glad.c">

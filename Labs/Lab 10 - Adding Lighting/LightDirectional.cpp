@@ -14,8 +14,8 @@ LightDirectional::LightDirectional(glm::vec3 direction, glm::vec3 ambient, glm::
 
 void LightDirectional::Use(Shader& shader) const
 {
-	Renderer::GetInstance().SetUniform3f(shader, "uLightDirectionalSource.base.ambient", m_Ambient.r, m_Ambient.g, m_Ambient.b);
-	Renderer::GetInstance().SetUniform3f(shader, "uLightDirectionalSource.base.diffuse", m_Diffuse.r, m_Diffuse.g, m_Diffuse.b);
-	Renderer::GetInstance().SetUniform3f(shader, "uLightDirectionalSource.base.specular", m_Specular.r, m_Specular.g, m_Specular.b);
-	Renderer::GetInstance().SetUniform3f(shader, "uLightDirectionalSource.direction", m_Direction.x, m_Direction.y, m_Direction.z);
+	Renderer::GetInstance().SetUniform3f(shader, "uLightDirectional.base.ambient", m_Ambient.r, m_Ambient.g, m_Ambient.b);
+	Renderer::GetInstance().SetUniform3f(shader, "uLightDirectional.base.diffuse", m_Diffuse.r, m_Diffuse.g, m_Diffuse.b);
+	Renderer::GetInstance().SetUniform3f(shader, "uLightDirectional.base.specular", m_Specular.r, m_Specular.g, m_Specular.b);
+	Renderer::GetInstance().SetUniform3f(shader, "uLightDirectional.direction", m_Direction.x, m_Direction.y, m_Direction.z);
 }

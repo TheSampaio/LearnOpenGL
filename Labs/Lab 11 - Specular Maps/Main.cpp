@@ -29,7 +29,7 @@ int main()
     window.Create();
 
     // Creates a shader program using files for the vertex and fragment shaders
-    Shader* pShader = new Shader("DefaultVert.glsl", "DefaultFrag.glsl");
+    Shader* pShader = new Shader("Default.vert", "Default.frag");
 
     // Creates all light sources
     LightDirectional* pSun = new LightDirectional(glm::vec3{ 1.5f, 1.0, -1.5 },

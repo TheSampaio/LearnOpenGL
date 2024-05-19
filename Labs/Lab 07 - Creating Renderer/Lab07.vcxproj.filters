@@ -44,10 +44,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="DefaultFrag.glsl">
+    <None Include="Default.frag">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="DefaultVert.glsl">
+    <None Include="Default.vert">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

@@ -188,8 +188,8 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="DefaultFrag.glsl" />
-    <None Include="DefaultVert.glsl" />
+    <None Include="Default.frag" />
+    <None Include="Default.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

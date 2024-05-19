@@ -26,7 +26,7 @@ int main()
     // Creates the window
     window.Create();
 
-    // Vertices's array
+    // Vertices's dynamic array
     const std::vector<GLfloat> vertices
     {
        // === Positions       // === Colours        // === Normals        // === UVs      // === Faces
@@ -64,7 +64,7 @@ int main()
     };
 
     // Creates a shader program using files for the vertex and fragment shaders
-    Shader* pShader = new Shader("DefaultVert.glsl", "DefaultFrag.glsl");
+    Shader* pShader = new Shader("Default.vert", "Default.frag");
 
     // Creates all light sources
     LightDirectional* pSun = new LightDirectional(glm::vec3{ 0.5f, 1.0f, 0.8f }, glm::vec3{ 0.45f });
@@ -118,7 +118,7 @@ int main()
             glm::mat4 model = glm::mat4(1.0f);
 
             // Set-ups the model matrix
-            model = glm::translate(model, glm::vec3{ 0.0f, 1.0f, 0.0f } * 0.25f);
+            model = glm::translate(model, glm::vec3{ 0.0f, 1.0f, 0.0f } *  0.25f);
             model = glm::translate(model, glm::vec3{ 0.0f, 0.0f, 1.0f } * -0.15f);
             model = glm::rotate(model, glm::radians(50.0f * timer.GetAmountTime()), glm::vec3{ 0.0f, 1.0f, 0.0f });
 
@@ -154,6 +154,4 @@ int main()
     delete pSandbrickTexture;
     delete pSun;
     delete pShader;
-
-    return 0;
 }
