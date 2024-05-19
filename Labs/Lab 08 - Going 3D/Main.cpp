@@ -82,9 +82,9 @@ int main()
             pVertexArray->Bind();
 
             // Creates MVP matrix
-            glm::mat4 model = glm::mat4(1.0f);
-            glm::mat4 view = glm::mat4(1.0f);
-            glm::mat4 projection = glm::mat4(1.0f);
+            glm::mat4 model = glm::mat4{ 1.0f };
+            glm::mat4 view = glm::mat4{ 1.0f };
+            glm::mat4 projection = glm::mat4{ 1.0f };
 
             // Set-ups MVP matrix
             model = glm::rotate(model, glm::radians(50.0f) * timer.GetAmountTime(), glm::vec3{ 0.0f, 1.0f, 0.0f });

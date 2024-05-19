@@ -76,7 +76,7 @@ int main()
             pVertexArray->Bind();
 
             // Set-ups texture's uniform and binds the texture
-            glUniform1i(glGetUniformLocation(pShader->GetId(), "DiffuseSampler"), 0);
+            glUniform1i(glGetUniformLocation(pShader->GetId(), "uDiffuseSampler"), 0);
             pGigaChadTexture->Bind();
 
             // Draw a triangle using the EBO set-up
