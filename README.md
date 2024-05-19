@@ -7,19 +7,29 @@
 </head>
 <body>
     <h1>Learn OpenGL</h1>
-        <details><summary>Classes Preview</summary>
-        <!-- New Preview Bwllow -->
-        <h3>1) Creating Window</h3>
-        <section>In this lab we are going to learn how to create a window using GLFW.</section>
-        <img src="Resources/Thumbnail/Labs/preview-lab-01.png" width=500 >
-        <!-- New Preview Bwllow -->
-        <h3>2) Creating Triangle</h3>
-        <section>In this lab we are going to learn how to "load" OpenGL using GLAD and use it to create a simple triangle with a vertex buffer object (VBO).</section>
-        <img src="Resources/Thumbnail/Labs/preview-lab-02.png" width=500 >
+    <section>
+        This repository was created to store and share all my studies about OpenGL. I separated every lesson into "Labs", this way I can make the lessons easier to understand and query lately if needed. I'd like to remind you that these lessons aren't necessarily the best way to program this computer graphics concept, they are just the way I think it'll be better to understand.
+    </section><br>
+        <details>
+            <summary>Classes Preview</summary>
+            <!-- New Preview Bwllow -->
+            <h3>1) Creating Window</h3>
+            <section>
+                In this lab I'll show you how to create a window using GLFW.
+            </section><br>
+            <img src="Resources/Thumbnail/Labs/preview-lab-01.png" width=500 >
+            <!-- New Preview Bwllow -->
+            <h3>2) Creating Triangle</h3>
+            <section>
+                In this lab I'll show you how to "load" OpenGL using GLAD and use it to create a simple triangle with a vertex buffer object (VBO).
+            </section><br>
+            <img src="Resources/Thumbnail/Labs/preview-lab-02.png" width=500 >
         </details>
     <h2>Credits</h2>
-  Excellent ways to learn OpenGL:<br>
-  • Reading great content: <a href="https://learnopengl.com/">Learn OpenGL</a><br>
-  • Watching great videos: <a href="https://www.youtube.com/@VictorGordan">Victor Gordan</a>, <a href="https://www.youtube.com/@TheCherno">The Cherno</a><br>
+    <section>
+        Excellent ways to learn OpenGL:<br>
+        • Reading great content: <a href="https://learnopengl.com/">Learn OpenGL</a><br>
+        • Watching great videos: <a href="https://www.youtube.com/@VictorGordan">Victor Gordan</a>, <a href="https://www.youtube.com/@TheCherno">The Cherno</a><br>
+    </section>
 </body>
 </html>
