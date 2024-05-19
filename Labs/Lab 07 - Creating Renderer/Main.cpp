@@ -72,7 +72,7 @@ int main()
             pVertexArray->Bind();
 
             // Set-ups texture's uniform and binds the texture
-            renderer.SetUniform1i(*pShader, "DiffuseSampler", 0);
+            renderer.SetUniform1i(*pShader, "uDiffuseSampler", 0);
             pGigaChadTexture->Bind();
 
             // Draw call command using indices

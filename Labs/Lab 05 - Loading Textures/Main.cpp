@@ -210,7 +210,7 @@ int main()
             glBindVertexArray(VAO);
 
             // Creates a uniform sampler and binds the generated texture
-            glUniform1i(glGetUniformLocation(shaderProgram, "DiffuseSampler"), 0);
+            glUniform1i(glGetUniformLocation(shaderProgram, "uDiffuseSampler"), 0);
             glBindTexture(GL_TEXTURE_2D, texture);
 
             // Draw a triangle using the EBO set-up
