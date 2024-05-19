@@ -3,7 +3,7 @@
 
 // Input variables
 in vec4 vColour;
-in vec2 vUV;
+in vec2 vTex;
 
 // Output variables
 out vec4 oFragment;
@@ -14,5 +14,5 @@ uniform sampler2D uDiffuseSampler;
 void main()
 {
     // Final fragment colour
-    oFragment = texture(uDiffuseSampler, vUV) * vColour;
+    oFragment = texture(uDiffuseSampler, vTex) * vColour;
 };

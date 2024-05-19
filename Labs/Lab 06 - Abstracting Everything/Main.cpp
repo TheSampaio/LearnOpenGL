@@ -24,7 +24,7 @@ int main()
     // Creates the window
     window.Create();
 
-    // Vertices's array
+    // Vertices's dynamic array
     const std::vector<GLfloat> vertices
     {
         // === Positions       // === Colours         // === UVs      // === Indices
@@ -42,7 +42,7 @@ int main()
     };
 
     // Creates a shader program using files for the vertex and fragment shaders
-    Shader* pShader = new Shader("DefaultVert.glsl", "DefaultFrag.glsl");
+    Shader* pShader = new Shader("Default.vert", "Default.frag");
 
     // Creates all buffer objects
     VAO* pVertexArray = new VAO();
@@ -98,6 +98,4 @@ int main()
     delete pElementBuffer;
     delete pGigaChadTexture;
     delete pShader;
-
-    return 0;
 }

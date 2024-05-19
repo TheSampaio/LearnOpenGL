@@ -5,12 +5,12 @@
 layout (location = 0) in vec3 iPosition;
 layout (location = 1) in vec3 iColour;
 layout (location = 2) in vec3 iNormal;
-layout (location = 3) in vec2 iUV;
+layout (location = 3) in vec2 iTex;
 
 // Output variables
 out vec4 vColour;
 out vec3 vNormal;
-out vec2 vUV;
+out vec2 vTex;
 out vec3 vFragmentPosition;
 
 // Uniforms
@@ -26,7 +26,7 @@ void main()
 
     // Transform normal from object space to world space
     vNormal = mat3(uNormalMatrix) * iNormal;
-    vUV = iUV;
+    vTex = iTex;
 
     // Calculates th current fragmnent position
     vFragmentPosition = vec3(uModel * vec4(iPosition, 1.0));

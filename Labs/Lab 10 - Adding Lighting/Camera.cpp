@@ -110,5 +110,5 @@ void Camera::Use(Shader& shader)
 	// Sends the VP matrix to the GPU
 	Renderer::GetInstance().SetUniformMatrix4fv(shader, "uView", m_View);
 	Renderer::GetInstance().SetUniformMatrix4fv(shader, "uProjection", m_Projection);
-	Renderer::GetInstance().SetUniform3f(shader, "uViewPositon", m_Position.x, m_Position.y, m_Position.z);
+	Renderer::GetInstance().SetUniform3f(shader, "uViewPosition", m_Position.x, m_Position.y, m_Position.z);
 }
