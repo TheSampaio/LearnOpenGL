@@ -103,7 +103,7 @@ void Camera::ProcessInputs()
 
 void Camera::Use(Shader& shader)
 {
-	// === View Projection Matrix ===
+	// Calculates the view projection matrix
 	m_View = glm::lookAt(m_Position, m_Position + m_Rotation, m_Up);
 	m_Projection = glm::perspective(glm::radians(m_FieldOfView), static_cast<float>(Window::GetInstance().GetSize()[0]) / static_cast<float>(Window::GetInstance().GetSize()[1]), m_ClipDistance[0], m_ClipDistance[1]);
 
