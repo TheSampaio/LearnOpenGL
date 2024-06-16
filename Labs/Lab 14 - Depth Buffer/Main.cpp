@@ -145,6 +145,11 @@ int main()
             // Calculates the camera's view projection matrix
             pCamera->Use(*pShader);
 
+            renderer.SetUniform3f(*pShader, "uBackgroundColour",
+                window.GetBackgroundColour()[0],
+                window.GetBackgroundColour()[1],
+                window.GetBackgroundColour()[2]);
+
             // Draw our meshes
             pMeshPlane->Draw(*pShader, *pTransformPlane);
             pMeshPyramid->Draw(*pShader, *pTransformPyramid);

@@ -59,6 +59,7 @@ uniform vec3 uViewPosition;
 uniform Material uMaterial;
 
 uniform int uMaxLightPoints;
+uniform vec3 uBackgroundColour;
 uniform LightDirection uLightDirectional;
 uniform LightPoint uLightPoint[NR_LIGHT_POINTS];
 uniform LightSpot uLightSpot;
@@ -83,7 +84,7 @@ void main()
     result += LightingSpot(uLightSpot, normal, viewDirection, vFragmentPosition);
 
     // Final fragment colour
-    oFragment = result * (1.0 - depth) + vec4(depth * vec3(0.2, 0.2, 0.4), 1.0);
+    oFragment = result * (1.0 - depth) + vec4(depth * uBackgroundColour, 1.0);
 }
 
 float DepthLinear(float depth)

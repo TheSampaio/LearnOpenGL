@@ -31,6 +31,9 @@ public:
 	// Returns window's size
 	inline std::array<unsigned short, 2> GetSize() const { return m_Size; }
 
+	// Returns window's background colour
+	inline std::array<GLfloat, 3> GetBackgroundColour() const { return m_BackgroundColour; }
+
 	// Returns window's center
 	inline std::array<unsigned short, 2> GetCenter() const { return m_Center; }
 
