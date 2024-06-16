@@ -109,9 +109,14 @@ vec4 LightingDirectional(LightDirection light, vec3 normal, vec3 viewDirection)
     vec4 diffuse = vec4(light.base.diffuse, 1.0) * diffuseFactor * (texture(uMaterial.diffuse, vTex) * vColour);
 
     // Specular
-    vec3 reflectDirection = reflect(-direction, normal);
-    float specularFactor = pow(max(dot(viewDirection, reflectDirection), 0.0), uMaterial.shininess);
-    vec4 specular = vec4(light.base.specular, 1.0) * specularFactor * (texture(uMaterial.specular, vTex).r * uMaterial.intensity);
+    vec4 specular = vec4(0.0);
+
+    if (diffuseFactor > 0.0)
+    {
+        vec3 halfWayDirection =  normalize(viewDirection + direction);
+        float specularFactor = pow(max(dot(normal, halfWayDirection), 0.0), uMaterial.shininess);
+        specular = vec4(light.base.specular, 1.0) * specularFactor * (texture(uMaterial.specular, vTex).r * uMaterial.intensity);
+    }
 
     // Output
     return ambient + diffuse + specular;
@@ -128,9 +133,14 @@ vec4 LightingPoint(LightPoint light, vec3 normal, vec3 viewDirection, vec3 fragm
     vec4 diffuse = vec4(light.base.diffuse, 1.0) * diffuseFactor * (texture(uMaterial.diffuse, vTex) * vColour);
 
     // Specular
-    vec3 reflectDirection = reflect(-direction, normal);
-    float specularFactor = pow(max(dot(viewDirection, reflectDirection), 0.0), uMaterial.shininess);
-    vec4 specular = vec4(light.base.specular, 1.0) * specularFactor * (texture(uMaterial.specular, vTex).r * uMaterial.intensity);
+    vec4 specular = vec4(0.0);
+
+    if (diffuseFactor > 0.0)
+    {
+        vec3 halfWayDirection =  normalize(viewDirection + direction);
+        float specularFactor = pow(max(dot(normal, halfWayDirection), 0.0), uMaterial.shininess);
+        specular = vec4(light.base.specular, 1.0) * specularFactor * (texture(uMaterial.specular, vTex).r * uMaterial.intensity);
+    }
 
     float lightDistance = length(light.position - fragmentPosition);
     float lightAttenuation = 1.0 / (light.constant + light.linear * lightDistance + light.quadratic * (lightDistance * lightDistance));
@@ -155,9 +165,14 @@ vec4 LightingSpot(LightSpot light, vec3 normal, vec3 viewDirection, vec3 fragmen
     vec4 diffuse = vec4(light.base.diffuse, 1.0) * diffuseFactor * (texture(uMaterial.diffuse, vTex) * vColour);
 
     // Specular
-    vec3 reflectDirection = reflect(-direction, normal);
-    float specularFactor = pow(max(dot(viewDirection, reflectDirection), 0.0), uMaterial.shininess);
-    vec4 specular = vec4(light.base.specular, 1.0) * specularFactor * (texture(uMaterial.specular, vTex).r * uMaterial.intensity);
+    vec4 specular = vec4(0.0);
+
+    if (diffuseFactor > 0.0)
+    {
+        vec3 halfWayDirection =  normalize(viewDirection + direction);
+        float specularFactor = pow(max(dot(normal, halfWayDirection), 0.0), uMaterial.shininess);
+        specular = vec4(light.base.specular, 1.0) * specularFactor * (texture(uMaterial.specular, vTex).r * uMaterial.intensity);
+    }
 
     float theta = dot(light.direction, -direction);
     float intensity = clamp((theta - light.outer) / light.inner, 0.0, 1.0);
