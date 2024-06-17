@@ -91,7 +91,7 @@ int main()
     Texture* pTextureSpecularPlane = new Texture("../../Resources/Textures/specular-wood-01.jpg", GL_RED, GL_TEXTURE1);
 
     // Creates a material
-    Material* pMaterialPlane = new Material(pTextureDiffusePlane, pTextureSpecularPlane, 0.8f, 25.0f);
+    Material* pMaterialPlane = new Material(pTextureDiffusePlane, pTextureSpecularPlane, 1.0f, 45.0f);
 
     // Creates a mesh
     Mesh* pMeshPlane = new Mesh(Geometry::plane, pMaterialPlane);
