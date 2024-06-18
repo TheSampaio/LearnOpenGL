@@ -95,8 +95,11 @@ void Window::ClearBuffers()
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 
+	// Enable OpenGL samples
+	glEnable(GL_MULTISAMPLE);
+
 	// Clear buffers
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
 	// Sets background's colour
 	glClearColor(m_BackgroundColour[0], m_BackgroundColour[1], m_BackgroundColour[2], 1.0f);
@@ -109,4 +112,10 @@ void Window::SetTitle(const std::string& title)
 
 	else
 		glfwSetWindowTitle(m_Id, title.c_str());
+}
+
+void Window::SetAntiAliasing(bool enable, unsigned short samples)
+{
+	if (enable)
+		glfwWindowHint(GLFW_SAMPLES, samples);
 }
