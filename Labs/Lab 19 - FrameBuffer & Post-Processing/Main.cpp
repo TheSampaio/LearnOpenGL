@@ -41,7 +41,9 @@ int main()
 
     // Creates a shader program using files for the vertex and fragment shaders
     Shader* pShaderDefault = new Shader("Default.vert", "Default.frag");
-    Shader* pShaderFramebuffer = new Shader("Kernel.vert", "Kernel.frag");
+
+    // Creates a shader program using files for the kernel effect
+    Shader* pShaderKernel = new Shader("Kernel.vert", "Kernel.frag");
 
     // Store all point lights
     std::vector<LightPoint*> lightPoints;
@@ -208,11 +210,11 @@ int main()
             pBufferFrame->Unbind();
 
             // Activates the framebuffer
-            pBufferFrame->Use(*pShaderFramebuffer);
+            pBufferFrame->Use(*pShaderKernel);
         }
 
         // Unbinds the shader program
-        pShaderFramebuffer->Unbind();
+        pShaderKernel->Unbind();
         pShaderDefault->Unbind();
 
         // Swaps window's buffers
@@ -245,5 +247,7 @@ int main()
     delete pLamp01;
     delete pSun;
 
+    // Shaders
+    delete pShaderKernel;
     delete pShaderDefault;
 }

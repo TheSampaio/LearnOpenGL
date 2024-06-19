@@ -41,6 +41,7 @@ int main()
     // Creates a shader program using files for the vertex and fragment shaders
     Shader* pShader = new Shader("Default.vert", "Default.frag");
 
+    // Store all point lights
     std::vector<LightPoint*> lightPoints;
 
     // Creates all light sources
