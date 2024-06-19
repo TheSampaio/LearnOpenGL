@@ -40,10 +40,10 @@ int main()
     renderer.SetFaceCulling(true);
 
     // Creates a shader program using files for the vertex and fragment shaders
-    Shader* pShader = new Shader("Default.vert", "Default.frag");
+    Shader* pShaderDefault = new Shader("Default.vert", "Default.frag");
 
     // Creates a shader program using files for the outiline effect
-    Shader* pOutline = new Shader("Outline.vert", "Outline.frag");
+    Shader* pShaderOutline = new Shader("Outline.vert", "Outline.frag");
 
     // Store all point lights
     std::vector<LightPoint*> lightPoints;
@@ -146,40 +146,40 @@ int main()
             pBufferStencil->Begin(GL_ALWAYS, 1, 0xFF);
 
             // Informs OpenGL which shader program
-            pShader->Bind();
+            pShaderDefault->Bind();
 
             // Calculates the camera's view projection matrix
-            pCamera->Use(*pShader);
+            pCamera->Use(*pShaderDefault);
 
-            renderer.SetUniform3f(*pShader, "uBackgroundColour",
+            renderer.SetUniform3f(*pShaderDefault, "uBackgroundColour",
                 window.GetBackgroundColour()[0],
                 window.GetBackgroundColour()[1],
                 window.GetBackgroundColour()[2]);
 
             // Draw our meshes
-            pMeshPyramid->Draw(*pShader, *pTransformPyramid);
+            pMeshPyramid->Draw(*pShaderDefault, *pTransformPyramid);
 
             // Calculates all the light sources
             {
                 // Point
                 int maxLightPoints = static_cast<int>(lightPoints.size());
-                renderer.SetUniform1i(*pShader, "uMaxLightPoints", maxLightPoints);
+                renderer.SetUniform1i(*pShaderDefault, "uMaxLightPoints", maxLightPoints);
 
                 for (int i = 0; i < maxLightPoints; i++)
-                    lightPoints.at(i)->Use(*pShader, i);
+                    lightPoints.at(i)->Use(*pShaderDefault, i);
             }
 
-            pBufferStencil->Use(*pOutline, *pCamera);
+            pBufferStencil->Use(*pShaderOutline, *pCamera);
 
             // Draw our outline meshes
-            pMeshPyramid->Draw(*pOutline, *pTransformPyramid);
+            pMeshPyramid->Draw(*pShaderOutline, *pTransformPyramid);
 
             pBufferStencil->End(GL_ALWAYS, 0, 0xFF);
         }
 
         // Unbinds the shader program
-        pOutline->Unbind();
-        pShader->Unbind();
+        pShaderOutline->Unbind();
+        pShaderDefault->Unbind();
 
         // Swaps window's buffers
         window.SwapBuffers();
@@ -202,6 +202,7 @@ int main()
     delete pLamp02;
     delete pLamp01;
 
-    delete pOutline;
-    delete pShader;
+    // Shaders
+    delete pShaderOutline;
+    delete pShaderDefault;
 }
