@@ -1,7 +1,7 @@
 #include "PCH.h"
 #include "VBO.h"
 
-VBO::VBO(std::vector<Vertex>& vertices)
+VBO::VBO(std::vector<Vertex> vertices)
 {
 	// Creates and setup a vertex buffer object
 	glGenBuffers(1, &m_Id);
