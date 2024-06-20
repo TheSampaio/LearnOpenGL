@@ -6,7 +6,7 @@
 class VBO
 {
 public:
-	VBO(std::vector<Vertex>& vertices);
+	VBO(std::vector<Vertex> vertices);
 	~VBO();
 
 	// Binds the VBO
