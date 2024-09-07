@@ -95,8 +95,8 @@ int main()
 
     // Creates and setup the transform component
     Transform* pTransformPyramid = new Transform();
-    pTransformPyramid->Translate(glm::vec3{ 0.0f, 1.0f, 0.0f } * 0.0002f);
-    pTransformPyramid->Scale(glm::vec3{ 1.0f } * 2.0f);
+    pTransformPyramid->Translate(glm::vec3{ 0.0f, 0.0002f, 0.0f });
+    pTransformPyramid->Scale(glm::vec3{ 2.0f });
 
     // Creates a shadow map
     ShadowMap* pShadowMap = new ShadowMap();
