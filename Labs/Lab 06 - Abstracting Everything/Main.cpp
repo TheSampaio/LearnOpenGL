@@ -50,7 +50,7 @@ int main()
     EBO* pElementBuffer = new EBO(indices);
 
     // Loads and creates a texture
-    Texture* pGigaChadTexture = new Texture("../../Resources/Textures/_gigashad-meme.png");
+    Texture* pGigaChadTexture = new Texture("../../Resources/Textures/meme-this-is-fine.png");
 
     // Set-ups VAO's layouts
     pVertexArray->AttribPointer(0, 3, 8 * sizeof(GLfloat), 0);                   // Position

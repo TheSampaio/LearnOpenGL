@@ -159,7 +159,7 @@ int main()
 
     // Loads a image from disk
     int texWidth = 0, texHeight = 0, column = 0;
-    unsigned char* bytes = stbi_load("../../Resources/Textures/_gigashad-meme.png", &texWidth, &texHeight, &column, 0);
+    unsigned char* bytes = stbi_load("../../Resources/Textures/meme-gigashad.png", &texWidth, &texHeight, &column, 0);
 
     // Generates a texture
     GLuint texture;
