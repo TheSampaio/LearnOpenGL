@@ -17,8 +17,11 @@ public:
 	inline void Draw(std::vector<GLuint> indices, GLenum primitive = GL_TRIANGLES)
 	{ glDrawElements(primitive, static_cast<GLsizei>(indices.size()), GL_UNSIGNED_INT, nullptr); }
 
-	inline void SetFaceCulling(bool enable)
-	{ glEnable(GL_CULL_FACE); glCullFace(GL_FRONT); glFrontFace(GL_CCW); }
+	// Set-ups face culling
+	void SetFaceCulling(bool enable);
+
+	// Set-ups blending
+	void SetBlending(bool enable, GLenum sFactor = GL_SRC_ALPHA, GLenum dFactor = GL_ONE_MINUS_SRC_COLOR);
 
 	// Set-ups an uniform 1 integer
 	inline void SetUniform1i(Shader& shader, const GLchar* name, GLint value)

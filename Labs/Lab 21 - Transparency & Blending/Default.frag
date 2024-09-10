@@ -10,7 +10,6 @@ in vec4 vColour;
 in vec3 vNormal;
 in vec2 vTex;
 in vec3 vFragmentPosition;
-in vec4 vFragmentPositionLight;
 
 // Output variables
 out vec4 oFragment;
@@ -56,8 +55,6 @@ struct Material
 };
 
 // Uniforms
-uniform sampler2D uShadowMap;
-
 uniform vec3 uViewPosition;
 uniform Material uMaterial;
 
@@ -85,6 +82,10 @@ void main()
         result += LightingPoint(uLightPoint[i], normal, viewDirection, vFragmentPosition);
 
     result += LightingSpot(uLightSpot, normal, viewDirection, vFragmentPosition);
+
+    // Discard alpha channel
+    if (texture(uMaterial.diffuse, vTex).a < 0.1)
+        discard;
 
     // Final fragment colour
     oFragment = result * (1.0 - depth) + vec4(depth * uBackgroundColour, 1.0);
@@ -121,41 +122,8 @@ vec4 LightingDirectional(LightDirection light, vec3 normal, vec3 viewDirection)
         specular = vec4(light.base.specular, 1.0) * specularFactor * (texture(uMaterial.specular, vTex).r * uMaterial.intensity);
     }
 
-
-    float shadow = 0.0;
-    vec3 lightCoords = vFragmentPositionLight.xyz / vFragmentPositionLight.w;
-
-    if (lightCoords.z <= 1.0)
-    {
-        lightCoords = (lightCoords + 1.0) / 2.0;
-
-        float closestDepth = texture(uShadowMap, lightCoords.xy).r;
-        float currentDepth = lightCoords.z;
-        float bias = 0.00008;
-
-        // Smoothens out the shadows
-		int samples = 2;
-		vec2 pixelSize = 1.0 / textureSize(uShadowMap, 0);
-
-		for(int y = -samples; y <= samples; y++)
-		{
-		    for(int x = -samples; x <= samples; x++)
-		    {
-		        float closestDepth = texture(uShadowMap, lightCoords.xy + vec2(x, y) * pixelSize).r;
-
-				if (currentDepth > closestDepth + bias)
-					shadow += 1.0;     
-		    }    
-		}
-
-		// Get average shadow
-		shadow /= pow((samples * 2 + 1), 2);
-    }
-
-
-
     // Output
-    return ambient + diffuse * (1.0 - shadow) + specular * (1.0 - shadow);
+    return ambient + diffuse + specular;
 }
 
 vec4 LightingPoint(LightPoint light, vec3 normal, vec3 viewDirection, vec3 fragmentPosition)
@@ -191,7 +159,6 @@ vec4 LightingPoint(LightPoint light, vec3 normal, vec3 viewDirection, vec3 fragm
 
 vec4 LightingSpot(LightSpot light, vec3 normal, vec3 viewDirection, vec3 fragmentPosition)
 {
-
     // Ambient
     vec4 ambient = vec4(light.base.ambient, 1.0) * texture(uMaterial.diffuse, vTex) * vColour;
     

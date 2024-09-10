@@ -34,9 +34,8 @@ void Material::Bind(Shader& shader)
 		m_Specular->Bind();
 	}
 
-	Renderer& renderer = Renderer::GetInstance();
-	renderer.SetUniform1f(shader, "uMaterial.intensity", m_Intensity);
-	renderer.SetUniform1f(shader, "uMaterial.shininess", m_Shininess);
+	Renderer::GetInstance().SetUniform1f(shader, "uMaterial.intensity", m_Intensity);
+	Renderer::GetInstance().SetUniform1f(shader, "uMaterial.shininess", m_Shininess);
 }
 
 void Material::Unbind()

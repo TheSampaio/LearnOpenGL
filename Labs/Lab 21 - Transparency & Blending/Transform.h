@@ -6,6 +6,10 @@ class Transform
 public:
 	Transform();
 
+	glm::vec3 GetPosition() { return glm::vec3{ m_Model[3] }; }
+	glm::vec3 GetRotationEuler();
+	glm::vec3 GetScale();
+
 	void Update(class Shader& shader);
 
 	void Translate(glm::vec3 position);

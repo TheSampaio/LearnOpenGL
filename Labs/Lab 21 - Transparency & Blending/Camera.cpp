@@ -107,10 +107,10 @@ void Camera::Use(Shader& shader)
 	m_View = glm::lookAt(m_Position, m_Position + m_Rotation, m_Up);
 	m_Projection = glm::perspective(glm::radians(m_FieldOfView), static_cast<float>(Window::GetInstance().GetSize()[0]) / static_cast<float>(Window::GetInstance().GetSize()[1]), m_ClipDistance[0], m_ClipDistance[1]);
 
+	// Sends the VP matrix to the GPU
 	Renderer& renderer = Renderer::GetInstance();
 	shader.Bind();
 
-	// Sends the VP matrix to the GPU
 	renderer.SetUniformMatrix4fv(shader, "uView", m_View);
 	renderer.SetUniformMatrix4fv(shader, "uProjection", m_Projection);
 	renderer.SetUniform3f(shader, "uViewPosition", m_Position.x, m_Position.y, m_Position.z);

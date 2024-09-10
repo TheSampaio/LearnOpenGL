@@ -3,6 +3,7 @@
 
 // === Standard includes === //
 
+#include <algorithm>
 #include <array>
 #include <fstream>
 #include <iostream>

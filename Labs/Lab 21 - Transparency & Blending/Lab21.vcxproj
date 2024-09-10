@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{7dd05cdd-735a-4243-81c0-cc41520e5092}</ProjectGuid>
+    <ProjectGuid>{077f3555-b69c-4efb-8372-c4e8888cf8ae}</ProjectGuid>
     <RootNamespace>Lab21</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -83,8 +83,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>D:\Applications\LearnOpenGL\Labs\Lab 00 - Dependencies\ComputerGraphicsSDK\Windows\OpenGL\Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\Applications\LearnOpenGL\Labs\Lab 00 - Dependencies\ComputerGraphicsSDK\Windows\OpenGL\Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -104,8 +104,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>D:\Applications\LearnOpenGL\Labs\Lab 00 - Dependencies\ComputerGraphicsSDK\Windows\OpenGL\Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\Applications\LearnOpenGL\Labs\Lab 00 - Dependencies\ComputerGraphicsSDK\Windows\OpenGL\Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -121,8 +121,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>D:\Applications\LearnOpenGL\Labs\Lab 00 - Dependencies\ComputerGraphicsSDK\Windows\OpenGL\Lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\Applications\LearnOpenGL\Labs\Lab 00 - Dependencies\ComputerGraphicsSDK\Windows\OpenGL\Lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -142,8 +142,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>D:\Applications\LearnOpenGL\Labs\Lab 00 - Dependencies\ComputerGraphicsSDK\Windows\OpenGL\Lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\Applications\LearnOpenGL\Labs\Lab 00 - Dependencies\ComputerGraphicsSDK\Windows\OpenGL\Lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -173,7 +173,6 @@
     </ClCompile>
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Shader.cpp" />
-    <ClCompile Include="ShadowMap.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -200,7 +199,6 @@
     <ClInclude Include="PCH.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Shader.h" />
-    <ClInclude Include="ShadowMap.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="Texture.h" />
@@ -218,8 +216,6 @@
     <None Include="Kernel.vert" />
     <None Include="Outline.frag" />
     <None Include="Outline.vert" />
-    <None Include="Shadow.frag" />
-    <None Include="Shadow.vert" />
     <None Include="Skybox.frag" />
     <None Include="Skybox.vert" />
   </ItemGroup>

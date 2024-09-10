@@ -12,14 +12,12 @@ out vec4 vColour;
 out vec3 vNormal;
 out vec2 vTex;
 out vec3 vFragmentPosition;
-out vec4 vFragmentPositionLight;
 
 // Uniforms
 uniform mat4 uModel;
 uniform mat4 uView;
 uniform mat4 uProjection;
 uniform mat4 uNormalMatrix;
-uniform mat4 uLightProjection;
 
 void main()
 {
@@ -32,8 +30,6 @@ void main()
 
     // Calculates th current fragmnent position
     vFragmentPosition = vec3(uModel * vec4(iPosition, 1.0));
-
-    vFragmentPositionLight = uLightProjection * vec4(vFragmentPosition, 1.0);
 
     // Final vertex position
     gl_Position = uProjection * uView * vec4(vFragmentPosition, 1.0);

@@ -10,6 +10,22 @@ Transform::Transform()
 	m_NormalMatrix = glm::mat4{ 1.0f };
 }
 
+glm::vec3 Transform::GetRotationEuler()
+{
+	glm::mat3 rotationMatrix = glm::mat3(m_Model);
+	glm::vec3 eulerAngles = glm::eulerAngles(glm::quat_cast(rotationMatrix));
+	return glm::degrees(eulerAngles);
+}
+
+glm::vec3 Transform::GetScale()
+{
+	glm::vec3 scale;
+	scale.x = glm::length(glm::vec3(m_Model[0]));
+	scale.y = glm::length(glm::vec3(m_Model[1]));
+	scale.z = glm::length(glm::vec3(m_Model[2]));
+	return scale;
+}
+
 void Transform::Update(Shader& shader)
 {
 	m_NormalMatrix = glm::transpose(glm::inverse(m_Model));
