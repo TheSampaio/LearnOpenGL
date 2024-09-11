@@ -30,7 +30,7 @@ int main()
     window.SetSize(1360, 768);
     window.SetTitle("Window");
     window.SetAntiAliasing(true);
-    window.SetVerticalSynchronization(true);
+    window.SetVerticalSynchronization(false);
     window.SetBackgroundColour(0.67f, 0.78f, 0.85f);
 
     // Creates the window
@@ -56,9 +56,6 @@ int main()
 
     // Creates a skybox
     Skybox* pSkybox = new Skybox(cubeMapTexture);
-
-    // Store all point lights
-    std::vector<LightPoint*> lightPoints;
 
     // Creates all light sources
     LightDirectional* pSun = new LightDirectional(glm::vec3{ 0.5f, 1.0, -1.5 });

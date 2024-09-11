@@ -29,7 +29,7 @@ int main()
     window.SetSize(1360, 768);
     window.SetTitle("Window");
     window.SetAntiAliasing(true);
-    window.SetVerticalSynchronization(true);
+    window.SetVerticalSynchronization(false);
     window.SetBackgroundColour(0.2f, 0.2f, 0.4f);
 
     // Creates the window

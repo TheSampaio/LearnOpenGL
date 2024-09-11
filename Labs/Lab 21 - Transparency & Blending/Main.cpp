@@ -57,9 +57,6 @@ int main()
     // Creates a skybox
     Skybox* pSkybox = new Skybox(cubeMapTexture);
 
-    // Store all point lights
-    std::vector<LightPoint*> lightPoints;
-
     // Creates all light sources
     LightDirectional* pSun = new LightDirectional(glm::vec3{ 0.5f, 1.0, -1.5 });
 
