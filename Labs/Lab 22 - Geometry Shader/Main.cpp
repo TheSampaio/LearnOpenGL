@@ -31,7 +31,7 @@ int main()
     window.SetTitle("Window");
     window.SetAntiAliasing(true);
     window.SetVerticalSynchronization(false);
-    window.SetBackgroundColour(0.67f, 0.78f, 0.85f);
+    window.SetBackgroundColour(0.2f, 0.2f, 0.2f);
 
     // Creates the window
     window.Create();
@@ -40,7 +40,7 @@ int main()
     renderer.SetFaceCulling(true);
 
     // Creates a shader program using files for the vertex and fragment shaders
-    Shader* pShaderDefault = new Shader("Default.vert", "Default.frag");
+    Shader* pShaderDefault = new Shader("Default.vert", "Default.frag", "Wind.geom");
     Shader* pShaderSkybox = new Shader("Skybox.vert", "Skybox.frag");
 
     // All the faces of the cubemap (make sure they are in this exact order)
@@ -63,35 +63,57 @@ int main()
     // ===== Plane's Mesh ================================================================================================ //
 
     // Loads and creates a texture
-    Texture* pTextureDiffusePlane = new Texture("../../Resources/Textures/diffuse-wood-01.png");
-    Texture* pTextureSpecularPlane = new Texture("../../Resources/Textures/specular-wood-01.jpg", GL_RED, GL_TEXTURE1);
+    Texture* pTextureDiffusePlane = new Texture("../../Resources/Textures/diffuse-grass-01.png");
+    Texture* pTextureSpecularPlane = new Texture("../../Resources/Textures/specular-grass-01.jpg", GL_RED, GL_TEXTURE1);
 
     // Creates a material
-    Material* pMaterialPlane = new Material(pTextureDiffusePlane, pTextureSpecularPlane, 1.0f, 45.0f);
+    Material* pMaterialPlane = new Material(pTextureDiffusePlane, pTextureSpecularPlane, 0.2f, 8.0f);
 
     // Creates a mesh
     Mesh* pMeshPlane = new Mesh(Geometry::plane, pMaterialPlane);
 
     // Creates and setup the transform component
     Transform* pTransformPlane = new Transform();
-    pTransformPlane->Scale(glm::vec3{ 1.0f } * 10.0f);
+    pTransformPlane->Scale(glm::vec3{ 32.0f });
 
-    // ===== Pyramid's Mesh ============================================================================================== //
+    // ===== Tree's Mesh =========================================================================================== //
 
     // Loads and creates a texture
-    Texture* pTextureDiffusePyramid = new Texture("../../Resources/Textures/diffuse-sandbrick-01.png");
-    Texture* pTextureSpecularPyramid = new Texture("../../Resources/Textures/specular-sandbrick-01.jpg", GL_RED, GL_TEXTURE1);
+    Texture* pTextureTree = new Texture("../../Resources/Textures/diffuse-tree-01.png");
 
     // Create a material
-    Material* pMaterialPyramid = new Material(pTextureDiffusePyramid, pTextureSpecularPyramid, 0.2f, 15.0f);
+    Material* pMaterialTree = new Material(pTextureTree, nullptr);
 
     // Creates a mesh
-    Mesh* pMeshPyramid = new Mesh(Geometry::pyramid, pMaterialPyramid);
+    Mesh* pMeshTree = new Mesh(Geometry::plane, pMaterialTree);
 
-    // Creates and setup the transform component
-    Transform* pTransformPyramid = new Transform();
-    pTransformPyramid->Translate(glm::vec3{ 0.0f, 1.0f, 0.0f } * 0.0002f);
-    pTransformPyramid->Scale(glm::vec3{ 1.0f } * 2.0f);
+    // Stores all trees transforms
+    std::vector<Transform*> pTransformTrees;
+
+    // Takes care of the information needed to draw the trees
+    const GLushort amountTrees = 500;
+
+    // Generates all windows
+    for (GLuint i = 0; i < amountTrees; i++)
+    {
+        // Creates a Transform component for all the Windows
+        pTransformTrees.push_back(new Transform());
+
+        // Random positions
+        pTransformTrees.at(i)->Translate(glm::vec3
+        {
+            -15.0f + static_cast<float>(rand()) / static_cast<float>(RAND_MAX / (15.0f - (-15.0f))),
+              1.5f,
+            -15.0f + static_cast<float>(rand()) / static_cast<float>(RAND_MAX / (15.0f - (-15.0f)))
+        });
+
+        // Random rotations
+        const float degrees = static_cast<float>(rand()) / static_cast<float>(RAND_MAX / 1.0f);
+        pTransformTrees.at(i)->Rotate(glm::vec3{ 90.0f, 0.0f, 0.0f });
+        pTransformTrees.at(i)->Rotate(glm::vec3{ 0.0f, 0.0f, degrees } * 360.0f);
+
+        pTransformTrees.at(i)->Scale(glm::vec3{ 3.0f });
+    }
 
     // Creates a ghost camera
     Camera* pCamera = new Camera{ glm::vec3{ 0.0f, 0.4f, 2.0f } };
@@ -129,9 +151,6 @@ int main()
 
             // Process all camera's events
             pCamera->ProcessInputs();
-
-            // Rotates the pyramid every frame
-            pTransformPyramid->Rotate(glm::vec3{ 0.0f, 50.0f, 0.0f } * timer.GetDeltaTime());
         }
 
         // Clears window's buffers
@@ -151,9 +170,24 @@ int main()
                 window.GetBackgroundColour()[1],
                 window.GetBackgroundColour()[2]);
 
+            renderer.SetUniform1f(*pShaderDefault, "uScale", 10.0f);
+
             // Draw our meshes
             pMeshPlane->Draw(*pShaderDefault, *pTransformPlane);
-            pMeshPyramid->Draw(*pShaderDefault, *pTransformPyramid);
+
+            renderer.SetUniform1f(*pShaderDefault, "uScale", 0.98f);
+            renderer.SetUniform1f(*pShaderDefault, "uTime", timer.GetAmountTime() * 2.0f);
+            renderer.SetUniform3f(*pShaderDefault, "uWindDirection", 1.0f, 0.0f, 1.0f);
+
+            // Disable face culling
+            renderer.SetFaceCulling(false);
+
+            // Draw all windows
+            for (unsigned i = 0; i < amountTrees; i++)
+                pMeshTree->Draw(*pShaderDefault, *pTransformTrees.at(i));
+
+            // Enable face culling
+            renderer.SetFaceCulling(true);
 
             // Directional
             pSun->Use(*pShaderDefault);
@@ -166,14 +200,15 @@ int main()
     // Deletes what we need anymore
     delete pCamera;
 
-    // Plane
-    delete pTransformPyramid;
-    delete pMeshPyramid;
-    delete pMaterialPyramid;
-    delete pTextureSpecularPyramid;
-    delete pTextureDiffusePyramid;
+    // Trees
+    for (unsigned i = 0; i < pTransformTrees.size(); i++)
+        delete pTransformTrees.at(i);
 
-    // Plane
+    delete pMeshTree;
+    delete pMaterialTree;
+    delete pTextureTree;
+
+    // Ground
     delete pTransformPlane;
     delete pMeshPlane;
     delete pMaterialPlane;
